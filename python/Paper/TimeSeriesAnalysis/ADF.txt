@@ -1,0 +1,2 @@
+C:\Users\lenove\AppData\Local\Programs\Python\Python36\python.exe F:/materials/python_projects/TimeSeriesAnalysis/precheck.py
+(-8.5248306009908621, 1.0761959326290656e-13, 6, 265, {'1%': -3.4552699038400827, '5%': -2.8725092359464526, '10%': -2.5726152830188678}, 935.49209212805499)
