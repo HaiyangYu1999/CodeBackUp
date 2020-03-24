@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{bm}
+\usepackage{fancyhdr}
+\usepackage{minted}
+\geometry{a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm}
+\usepackage{amsmath}
+\pagestyle{plain}
+\title{CMSE890 Homework\#1}
+\author{Haiyang Yu}
+\begin{document}
+\maketitle
+\subsection*{1.}
+If $\bm{x}$ is optimal, for all feasible $\bm{y}$, $\bm{y}_{k}=\frac{k}{k+1}\bm{x}+\frac{1}{k+1}\bm{y}$, we have $f(\bm{y}_{k})-f(\bm{x})\geq0,\forall k$.
+So$$\frac{f(\bm{y}_{k})-f(\bm{x})}{\frac{1}{k+1}}=\frac{f(\bm{x}+\frac{1}{k+1}(\bm{y}-\bm{x}))-f(\bm{x})}{\frac{1}{k+1}}\geq0$$
+
+Let $k\rightarrow \infty$, we get $\nabla f(\bm{x})^{\mathrm{T}}(\bm{y}-\bm{x})\geq0$
+
+\subsection*{2.}
+
+Because $\bm{x}^{\mathrm{T}}W\bm{x}$ is a scalar. $(\bm{x}^{\mathrm{T}}W\bm{x})^{\mathrm{T}}=\bm{x}^{\mathrm{T}}W\bm{x}=\bm{x}^{\mathrm{T}}\frac{W+W^{\mathrm{T}}}{2}\bm{x}$. So we always assume $W$ is symmetric. Symmetric positive definite matrix has the real and positive eigenvalue and eigenvector is orthogonal, which means $P^{-1}=P^{\mathrm{T}}$.
+
+Suppose
+\begin{align*}
+W_{1}&=P^{-1}\mathrm{diag}(\lambda_{1},\lambda_{2},\cdots,\lambda_{n})P \\
+&=(P^{-1}\mathrm{diag}(\sqrt{\lambda_{1}},\sqrt{\lambda_{2}},\cdots,\sqrt{\lambda_{n}})P)^{\mathrm{T}}(P^{-1}\mathrm{diag}(\sqrt{\lambda_{1}},\sqrt{\lambda_{2}},\cdots,\sqrt{\lambda_{n}})P)\\
+&\triangleq S^{\mathrm{T}}S
+\end{align*}
+In the same way, we define $W_{2}=R^{\mathrm{T}}R$.
+\begin{align*}
+||\bm{x}||_{W_{1}}&=\sqrt{\bm{x}^{\mathrm{T}}W_{1}x}=\sqrt{\bm{x}^{\mathrm{T}}S^{\mathrm{T}}S\bm{x}}\\
+&=||S\bm{x}||_{2}=||SR^{-1}R\bm{x}||_{2}\\
+&\leq||SR^{-1}||_{2}\cdot||R\bm{x}||_{2}=||SR^{-1}||_{2}\cdot||x||_{W_{2}}
+\end{align*}
+In the same way, we get $||\bm{x}||_{W_{2}}\leq||RS^{-1}||_{2}\cdot||x||_{W_{1}}$, so $m=||SR^{-1}||_{2}^{-1}$ and $M=||RS^{-1}||_{2}$.
+\subsection*{3.}
+Suppose $f(\bm{x})=||\bm{x}||_{1}+\bm{x}^{\mathrm{T}}\bm{b},\ \bm{b}=(b_{1},b_{2},\cdots,b_{n})^{\mathrm{T}}$.
+
+\textbf{Case 1:} $|b_{i}|\leq 1, \forall i\in \{1,2,\cdots,n\}$.
+
+Then
+\begin{align*}
+f(\bm{x})&=\sum_{i=1}^{n}\left(|x_{i}|+b_{i}x_{i}\right)\\
+&\geq\sum_{i=1}^{n}\left(|x_{i}|-|b_{i}||x_{i}|\right)\\
+&=\sum_{i=1}^{n}(1-|b_{i}|)|x_{i}|\\
+&\geq 0
+\end{align*}
+
+However, $f(\bm{x^{*}})=0$ when $\bm{x^{*}}=\bm{0}$, So $$\min_{||\bm{x}||_{2}\leq1}f(\bm{x})=0$$
+$$\mathop{\arg\min}_{||\bm{x}||_{2}\leq1}f(\bm{x})=\bm{0}$$
+
+\textbf{Case 2:} $\exists i\in \{1,2,\cdots,n\}$ that makes $|b_{i}|>1$.
+
+In this case, we suppose that $|b_{1}|\geq|b_{2}|\geq \cdots \geq |b_{k}|>1\geq|b_{k+1}|\geq\cdots\geq|b_{n}|$.(In other words, we sort $|b_{i}|$)
+
+Then, for $||\bm{x}||_{2}\leq1$,
+\begin{align*}
+f(\bm{x})&=\sum_{i=1}^{n}\left(|x_{i}|+b_{i}x_{i}\right)\\
+&\geq\sum_{i=1}^{n}\left(|x_{i}|-|b_{i}||x_{i}|\right)\\
+&=\sum_{i=1}^{k}(1-|b_{i}|)|x_{i}|+\sum_{i=k+1}^{n}(1-|b_{i}|)|x_{i}|\\
+&\geq \sum_{i=1}^{k}(1-|b_{i}|)|x_{i}|\\
+&=(\bm{b}^{*})^{\mathrm{T}}\mathrm{sgn}(\bm{x})
+\end{align*}
+where $\bm{b}^{*}=(1-|b_{1}|,1-|b_{2}|,\cdots,1-|b_{k}|,0,\cdots,0)^{\mathrm{T}}$ and $\mathrm{sgn}(\bm{x})=(|x_{1}|,|x_{2}|,\cdots,|x_{n}|)^{\mathrm{T}}$. We have $\{\mathrm{sgn}(\bm{x}):||\bm{x}||_{2}\leq1\}\subset\{\bm{x}:||\bm{x}||_{2}\leq1\}$.
+
+So
+\begin{align*}
+f(\bm{x})&\geq(\bm{b}^{*})^{\mathrm{T}}\mathrm{sgn}(\bm{x})\\
+&\geq \inf_{||\bm{x}||_{2}\leq1}(\bm{b}^{*})^{\mathrm{T}}\mathrm{sgn}(\bm{x})\\
+&\geq\inf_{||\bm{x}||_{2}\leq1}(\bm{b}^{*})^{\mathrm{T}}\bm{x}\\
+&=(\bm{b}^{*})^{\mathrm{T}}\left(-\frac{\bm{b}^{*}}{||\bm{b}^{*}||_{2}}\right)\\
+&=-||\bm{b}^{*}||_{2}\\
+&=-\sqrt{\sum_{i=1}^{k}(1-|b_{i}|)^{2}}
+\end{align*}
+
+However, let $\bm{x}^{*}=\left(\frac{(1-|b_{1}|)\mathrm{sgn}(b_{1})}{\sqrt{\sum_{i=1}^{k}(1-|b_{i}|)^{2}}},\frac{(1-|b_{2}|)\mathrm{sgn}(b_{2})}{\sqrt{\sum_{i=1}^{k}(1-|b_{i}|)^{2}}},\cdots,\frac{(1-|b_{k}|)\mathrm{sgn}(b_{k})}{\sqrt{\sum_{i=1}^{k}(1-|b_{i}|)^{2}}},0,\cdots,0\right)^{\mathrm{T}}$
+
+Then
+\begin{align*}
+f(\bm{x}^{*})&=\sum_{i=1}^{k}\left(\frac{|\mathrm{sgn}(b_{i})(1-|b_{i}|)|}{\sqrt{\sum_{j=1}^{k}(1-|b_{j}|)^{2}}}+\frac{b_{i}\mathrm{sgn}(b_{i})(1-|b_{i}|)}{\sqrt{\sum_{j=1}^{k}(1-|b_{j}|)^{2}}}\right)\\
+&=\sum_{i=1}^{k}\left(\frac{(|b_{i}|-1)}{\sqrt{\sum_{j=1}^{k}(1-|b_{j}|)^{2}}}+\frac{|b_{i}|(1-|b_{i}|)}{\sqrt{\sum_{j=1}^{k}(1-|b_{j}|)^{2}}}\right)\\
+&=\sum_{i=1}^{k}\frac{-(1-|b_{i}|)^{2}}{\sqrt{\sum_{j=1}^{k}(1-|b_{j}|)^{2}}}\\
+&=-\sqrt{\sum_{i=1}^{k}(1-|b_{i}|)^{2}}
+\end{align*}
+
+So
+$$\min_{||\bm{x}||_{2}\leq1}f(\bm{x})=-\sqrt{\sum_{i=1}^{k}(1-|b_{i}|)^{2}}$$
+$$\mathop{\arg\min}_{||\bm{x}||_{2}\leq1}f(\bm{x})=\left(\frac{(1-|b_{1}|)\mathrm{sgn}(b_{1})}{\sqrt{\sum_{i=1}^{k}(1-|b_{i}|)^{2}}},\frac{(1-|b_{2}|)\mathrm{sgn}(b_{2})}{\sqrt{\sum_{i=1}^{k}(1-|b_{i}|)^{2}}},\cdots,\frac{(1-|b_{k}|)\mathrm{sgn}(b_{k})}{\sqrt{\sum_{i=1}^{k}(1-|b_{i}|)^{2}}},0,\cdots,0\right)^{\mathrm{T}}$$
+
+\subsection*{4.}
+Let $p=1/\theta$, $q=1/(1-\theta)$. Then $1/p+1/q=1$
+\begin{align*}
+f(\theta\bm{x}+(1-\theta)\bm{y})&=\sum_{i=1}^{n}\mathrm{log}\left(1+\mathrm{e}^{\bm{a}_{i}^{\mathrm{T}}(\theta\bm{x}+(1-\theta)\bm{y})}\right)\\
+&=\sum_{i=1}^{n}\mathrm{log}\left(1^{\theta}\cdot1^{1-\theta}+\mathrm{e}^{\theta\bm{a}_{i}^{\mathrm{T}}\bm{x}}\cdot\mathrm{e}^{(1-\theta)\bm{a}_{i}^{\mathrm{T}}\bm{y}}\right)\\
+&\leq \sum_{i=1}^{n}\mathrm{log}\left(\left((1^{\theta})^{p}+(\mathrm{e}^{\theta\bm{a}_{i}^{\mathrm{T}}\bm{x}})^{p}\right)^{1/p}\cdot\left((1^{1-\theta})^{q}+(\mathrm{e}^{(1-\theta)\bm{a}_{i}^{\mathrm{T}}\bm{y}})^{q}\right)^{1/q}\right)\\
+&=\frac{1}{p}\sum_{i=1}^{n}\mathrm{log}(1+\mathrm{e}^{\bm{a}_{i}^{\mathrm{T}}\bm{x}})+\frac{1}{q}\sum_{i=1}^{n}\mathrm{log}(1+\mathrm{e}^{\bm{a}_{i}^{\mathrm{T}}\bm{y}})\\
+&=\theta f(\bm{x})+(1-\theta)f(\bm{y})
+\end{align*}
+so $f$ is convex.
+\subsection*{5.}
+\subsubsection*{(1)}
+\begin{align*}
+(F(\bm{x})-F(\bm{y}))^{\mathrm{T}}(\bm{x}-\bm{y})\geq0&\Leftrightarrow (\bm{x}-\bm{y})^{\mathrm{T}}A^{\mathrm{T}}(\bm{x}-\bm{y})\geq0\\
+&\Leftrightarrow A \text{ is positive semi-definite.}
+\end{align*}
+\subsubsection*{(2)}
+\begin{align*}
+(F(\bm{x})-F(\bm{y}))^{\mathrm{T}}(\bm{x}-\bm{y})>0&\Leftrightarrow (\bm{x}-\bm{y})^{\mathrm{T}}A^{\mathrm{T}}(\bm{x}-\bm{y})>0\\
+&\Leftrightarrow A \text{ is positive definite.}
+\end{align*}
+\subsubsection*{(3)}
+\begin{align*}
+(F(\bm{x})-F(\bm{y}))^{\mathrm{T}}(\bm{x}-\bm{y})\geq m||\bm{x}-\bm{y}||^{2}&\Leftrightarrow (\bm{x}-\bm{y})^{\mathrm{T}}(A-mI)^{\mathrm{T}}(\bm{x}-\bm{y})\geq0\\
+&\Leftrightarrow A-mI \text{ is positive semi-definite.}
+\end{align*}
+\subsubsection*{(4)}
+\begin{align*}
+||F(\bm{x})-F(\bm{y})||\leq L||\bm{x}-\bm{y}||&\Leftrightarrow (\bm{x}-\bm{y})^{\mathrm{T}}A^{\mathrm{T}}A(\bm{x}-\bm{y})\leq L^{2}(\bm{x}-\bm{y})^{\mathrm{T}}(\bm{x}-\bm{y})\\
+&\Leftrightarrow L^{2}-A^{\mathrm{T}}A \text{ is positive semi-definite.}
+\end{align*}
+\subsubsection*{(5)}
+\begin{align*}
+(F(\bm{x})-F(\bm{y}))^{\mathrm{T}}(\bm{x}-\bm{y})\geq\frac{1}{L}||F(\bm{x})-F(\bm{y})||^{2}&\Leftrightarrow (\bm{x}-\bm{y})^{\mathrm{T}}A^{\mathrm{T}}(\bm{x}-\bm{y})\geq \frac{1}{L}(\bm{x}-\bm{y})^{\mathrm{T}}A^{\mathrm{T}}A(\bm{x}-\bm{y})\\
+&\Leftrightarrow A^{\mathrm{T}}-\frac{1}{L}A^{\mathrm{T}}A \text{ is positive semi-definite.}
+\end{align*}
+\end{document}
