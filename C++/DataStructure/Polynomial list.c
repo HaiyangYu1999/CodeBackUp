@@ -1,5 +1,5 @@
 
-
+//链表实现多项式加法乘法
 
 
 #include<stdio.h>
@@ -71,7 +71,7 @@ int polylenth(poly*l)
     }
     return k;
 }
-void Up(poly*l)
+void Up(poly*l)          //多项式次数升序排列
 {
     int c;double s;
     poly*p=l->next;
@@ -105,7 +105,7 @@ void Up(poly*l)
 
 }
 
-void Low(poly*l)
+void Low(poly*l)   //多项式次数降序排列
 {
     int c;double s;
     poly*p=l->next;
@@ -139,7 +139,7 @@ void Low(poly*l)
 
 }
 
-poly* plus(poly*a,poly*b)
+poly* plus(poly*a,poly*b)    //多项式相加
 {
    poly*p=b->next;
    poly*s=a->next;
@@ -158,7 +158,7 @@ poly* plus(poly*a,poly*b)
 
 }
 
-poly* multi(poly* l,double a)
+poly* multi(poly* l,double a)    //多项式数乘
 {
     poly*p=l->next;
     while(p)
@@ -169,7 +169,7 @@ poly* multi(poly* l,double a)
     Low(l);
     return l;
 }
-poly* multix(poly* l,double a,int b)
+poly* multix(poly* l,double a,int b)   //多项式和单项式a*x^b相乘
 {
     poly*p=l->next;
     while(p)
@@ -181,7 +181,7 @@ poly* multix(poly* l,double a,int b)
     Low(l);
     return l;
 }
-double value(poly*l,double a)
+double value(poly*l,double a)       //多项式在a处的值
 {
     poly*p=l->next;
     double sum=0.0;
@@ -193,7 +193,7 @@ double value(poly*l,double a)
     return sum;
 }
 
-poly* multiple(poly*a,poly*b)
+poly* multiple(poly*a,poly*b)    //多项式相乘
 {
     int k=0;
     poly*p1=a->next;
