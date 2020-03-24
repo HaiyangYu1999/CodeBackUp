@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage{bm}
+\usepackage{fancyhdr}
+\usepackage{minted}
+\geometry{a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm}
+\usepackage{amsmath}
+\pagestyle{plain}
+\title{STT886 Homework\#5}
+\author{Haiyang Yu}
+\begin{document}
+\maketitle
+\subsection*{1.}
+$$P_{T}=
+ \left[
+ \begin{matrix}
+   0.4 & 0.2 & 0.1 \\
+   0.1 & 0.5 & 0.2 \\
+   0.3 & 0.4 & 0.2
+  \end{matrix}
+  \right]
+$$
+$$S=(I-P_{T})^{-1}=
+\left[
+\begin{matrix}
+2.20689655 &1.37931034& 0.62068966\\
+0.96551724 &3.10344828 &0.89655172\\
+1.31034483 &2.06896552 &1.93103448
+\end{matrix}
+\right]
+$$
+Thus, $(s_{13},s_{23},s_{33})^{\mathrm{T}}=(1.31034483, 2.06896552, 1.93103448)^{\mathrm{T}}$.
+
+$$f_{ij}=\frac{s_{ij}-\delta_{ij}}{s_{jj}}$$
+
+$(f_{13},f_{23},f_{33})^{\mathrm{T}}=(0.6785714307908163, 1.071428574387755, 0.48214285640306126)$
+\subsection*{2.}
+Because we have $E(X_{n})=\mu^{n}$, The number of individuals ever exist is $\sum_{n=0}^{+\infty}X_{n}$. Thus, 
+\begin{align*}
+E(\mathrm{the\ number\ of\ individuals\ ever\ exist})&=E(\sum_{n=0}^{+\infty}X_{n})\\
+&=\sum_{n=0}^{+\infty}\mu^{n}\\
+&=\frac{1}{1-\mu}
+\end{align*}
+If $X_{0}=n$, we have $E(X_{i})=n\mu^{i}$, The number of individuals ever exist is $\sum_{i=0}^{+\infty}nX_{i}$. Thus,
+\begin{align*}
+E(\mathrm{the\ number\ of\ individuals\ ever\ exist})&=E(\sum_{i=0}^{+\infty}X_{i})\\
+&=\sum_{i=0}^{+\infty}n\mu^{i}\\
+&=\frac{n}{1-\mu}
+\end{align*}
+\subsection*{3.}
+$$\pi_{0}=\frac{1}{4}\pi_{0}+\frac{3}{4}\pi_{0}^{2}\Rightarrow \pi_{0}=\frac{1}{3}$$
+$$\pi_{0}=\frac{1}{4}+\frac{1}{2}\pi_{0}+\frac{1}{4}\pi_{0}^{2}\Rightarrow \pi_{0}=1$$
+$$\pi_{0}=\frac{1}{6}+\frac{1}{2}\pi_{0}+\frac{1}{3}\pi_{0}^{3}\Rightarrow \pi_{0}=\frac{\sqrt{3}-1}{2}$$
+\subsection*{4.}
+\subsubsection*{(a)} 
+Yes. Because the number of white balls only depends on the last time's number of white balls.
+\subsubsection*{(b)}
+Class:$\{0,1,2,\cdots,N\}$. Aperiodic. Recurrent.
+\subsubsection*{(c)}
+$$P_{i,i+1}=p\frac{N-i}{N},\ i=0,1,\cdots,N-1$$
+$$P_{i,i}=p\frac{i}{N}+(1-p)\frac{N-i}{N},\ i=0,1,\cdots,N$$
+$$P_{i,i-1}=(1-p)\frac{i}{N},\ i=1,2,\cdots,N$$
+\subsubsection*{(d)}
+$N=2$. Let
+$$\bm{\pi}^{\mathrm{T}}\left[
+\begin{matrix}
+1-p&p&0\\
+(1-p)/2&p/2+(1-p)/2&p/2\\
+0&1-p&p
+\end{matrix}
+\right]
+=\bm{\pi}^{\mathrm{T}}$$
+$$\sum_{i=0}^{2}\pi_{i}=1$$
+Thus,$$\bm{\pi}^{\mathrm{T}}=((1-p)^{2},2p(1-p),p^{2}),$$ which means $$\pi_{i}=\binom{N}{i}p^{i}(1-p)^{N-i},\ N=2$$
+\subsubsection*{(e)}
+So we guess $$\pi_{i}=\binom{N}{i}p^{i}(1-p)^{N-i}.$$
+\subsubsection*{(f)}
+When $1\leq i\leq N$, we have
+\begin{footnotesize}
+\begin{align*}
+\sum_{j=1}^{N}\pi_{j}P_{j,i}=&P_{i-1,i}\cdot\pi_{i-1}+P_{i,i}\cdot\pi_{i}+P_{i+1,i}\cdot\pi_{i+1}\\
+=&p\frac{N-i+1}{N}\binom{N}{i-1}p^{i-1}(1-p)^{N-i+1}+\left(p\frac{i}{N}+(1-p)\frac{N-i}{N}\right)\binom{N}{i}p^{i}(1-p)^{N-i}\\
+&+(1-p)\frac{i+1}{N}\binom{N}{i+1}p^{i+1}(1-p)^{N-i-1}\\
+=&p\frac{N-i+1}{N}\frac{N!}{(N-i+1)!(i-1)!}p^{i-1}(1-p)^{N-i+1}+\left(p\frac{i}{N}+(1-p)\frac{N-i}{N}\right)\frac{N!}{(N-i)!i!}p^{i}(1-p)^{N-i}\\
+&+(1-p)\frac{i+1}{N}\frac{N!}{(N-i-1)!(i+1)!}p^{i+1}(1-p)^{N-i-1}\\
+=&(1-p)\frac{i}{N}\frac{N!}{(N-i)!i!}p^{i}(1-p)^{N-i}+\left(p\frac{i}{N}+(1-p)\frac{N-i}{N}\right)\frac{N!}{(N-i)!i!}p^{i}(1-p)^{N-i}\\
+&+p\frac{N-i}{N}\frac{N!}{(N-i)!i!}p^{i}(1-p)^{N-i}\\
+=&\binom{N}{i}p^{i}(1-p)^{N-i}\\
+=&\pi_{i}
+\end{align*}
+\end{footnotesize}
+And it is obvious that $\pi_{0}=P_{00}\cdot\pi_{0}+P_{10}\cdot\pi_{1}$, $\pi_{N}=P_{N-1,N}\cdot\pi_{N-1}+P_{NN}\cdot\pi_{N}$.
+
+Thus, $\bm{\pi}^{\mathrm{T}}=\bm{\pi}^{\mathrm{T}}P$, which indicates $$\pi_{i}=\binom{N}{i}p^{i}(1-p)^{N-i}.$$
+\subsubsection*{(g)}
+Suppose it takes $K_{j}$ times to turn from $j$ white to $j+1$ white.
+So$$P(K_{j}=k)=\left(\frac{j}{N}\right)^{k-1}\frac{N-j}{N}$$
+And
+\begin{align*}
+E(K_{j})&=\sum_{k=1}^{\infty}k\left(\frac{j}{N}\right)^{k-1}\frac{N-j}{N}\\
+&=\frac{N-j}{N}\sum_{k=1}^{\infty}\left[\frac{\mathrm{d}}{\mathrm{d}x}x^{k}\right]_{x=\frac{j}{N}}\\
+&=\frac{N-j}{N}\left[\frac{\mathrm{d}}{\mathrm{d}x}\sum_{k=1}^{\infty}x^{k}\right]_{x=\frac{j}{N}}\\
+&=\frac{N-j}{N}\left[\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{x}{1-x}\right)\right]_{x=\frac{j}{N}}\\
+&=\frac{N-j}{N}\left[\frac{1}{(1-x)^{2}}\right]_{x=\frac{j}{N}}\\
+&=\frac{N-j}{N}\frac{1}{(1-\frac{j}{N})^{2}}\\
+&=\frac{N}{N-j}
+\end{align*}
+So the times are
+\begin{align*}
+E(\sum_{j=i}^{N-1}K_{j})&=\sum_{j=i}^{N-1}E(K_{j})\\
+&=\sum_{j=i}^{N-1}\frac{N}{N-j}\\
+&=\sum_{j=1}^{N-i}\frac{N}{j}
+\end{align*}
+
+\end{document}

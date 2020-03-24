@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{bm}
+\usepackage{fancyhdr}
+\usepackage{minted}
+\geometry{a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm}
+\usepackage{amsmath}
+\pagestyle{plain}
+\title{STT886 Homework\#3}
+\author{Haiyang Yu}
+\begin{document}
+\maketitle
+\subsection*{1.}
+
+\subsubsection*{(1)}
+Because the tick cannot remain static, so $p_{1}=0$,
+$$p_{2}=P(O_{2})=P(O|A)P(A)+P(O|B)P(B)+P(O|C)P(C)+P(O|D)P(D)=\frac{1}{3}$$
+
+\subsubsection*{(2)}
+Apparently, $P(A_{1})=P(B_{1})=P(C_{1})=P(D_{1})=1/4$, assume $P(A_{n})=P(B_{n})=P(C_{n})=P(D_{n})=\alpha, P(O_{n})=1-4\alpha$.
+So, 
+\begin{align*}
+P(A_{n+1})&=P(B_{n})P(A_{n+1}|B_{n})+P(D_{n})P(A_{n+1}|D_{n})+P(O_{n})P(A_{n+1}|O_{n})\\
+&=\frac{1}{3}\alpha+\frac{1}{3}\alpha+\frac{1}{4}(1-4\alpha)\\
+&=\frac{1}{4}-\frac{1}{3}\alpha
+\end{align*}
+In the same way, we have $P(B_{n+1})=P(C_{n+1})=P(D_{n+1})=1/4-\alpha/3$. So $P(A_{n+1})=P(B_{n+1})=P(C_{n+1})=P(D_{n+1})$, which means $P(A_{n})=P(B_{n})=P(C_{n})=P(D_{n}), \forall n\geq1$
+
+\subsubsection*{(3)}
+\begin{align*}
+p_{n+1}&=P(O_{n+1})\\
+&=P(A_{n})P(O_{n+1}|A_{n})+P(B_{n})P(O_{n+1}|B_{n})+P(C_{n})P(O_{n+1}|C_{n})+P(D_{n})P(O_{n+1}|D_{n})\\
+&=\frac{1}{3}\left(P(A_{n})+P(B_{n})+P(C_{n})+P(D_{n})\right)\\
+&=\frac{1}{3}(1-p_{n})
+\end{align*}
+\begin{align*}
+p_{n+1}=\frac{1}{3}(1-p_{n})&\Leftrightarrow p_{n+1}-\frac{1}{4}=-\frac{1}{3}\left(p_{n}-\frac{1}{4}\right)\\
+&\Leftrightarrow p_{n}-\frac{1}{4}=\left(-\frac{1}{3}\right)^{n}\left(p_{0}-\frac{1}{4}\right)\\
+&\Leftrightarrow p_{n}=\frac{1}{4}+\frac{3}{4}\left(-\frac{1}{3}\right)^{n}
+\end{align*}
+
+\subsubsection*{(4)}
+
+Let $n\rightarrow \infty$, $p_{n}\rightarrow 1/4$, 
+$$\lim_{n\rightarrow\infty}P(A_{n})=\lim_{n\rightarrow\infty}P(B_{n})=\lim_{n\rightarrow\infty}P(C_{n})=\lim_{n\rightarrow\infty}P(D_{n})=\frac{1}{4}(1-\lim_{n\rightarrow\infty}p_{{n}})=\frac{3}{16}$$
+
+So the proportion of $A,B,C,D,O$ is $3/16,3/16,3/16,3/16,1/4$.
+
+\subsection*{2.}
+
+\subsubsection*{(1)}
+\begin{align*}
+E(S_{n}|X_{i})&=\sum_{j=1}^{n}E(X_{j}|X_{i})\\
+&=(n-1)E(X_{1})+E(X_{i}|X_{i})\\
+&=(n-1)E(X_{1})+X_{i}
+\end{align*}
+
+\subsubsection*{(2)}
+\begin{align*}
+E(X_{i}|S_{n})&=\frac{1}{n}\sum_{j=1}^{n}E(X_{j}|S_{n})\\
+&=\frac{1}{n}E(S_{n}|S_{n})\\
+&=\frac{1}{n}S_{n}
+\end{align*}
+
+\subsubsection*{(3)}
+
+$p_{x_{1},x_{2}}(x_{1},x_{2})=f(x_{1})f(x_{2})$, so
+$$p_{x_{1},S_{2}}(x_{1},S_{2})=p_{x_{1},x_{2}}(x_{1},S_{2}-x_{1})\left|\frac{\partial(x_{1},x_{2})}{\partial(x_{1},S_{2})}\right|=f(x_{1})f(S_{2}-x_{1})$$
+\begin{align*}
+p_{x_{1}|S_{2}}(x_{1}|S_{2})&=\frac{p_{x_{1},S_{2}}(x_{1},S_{2})}{p_{S_{2}}(S_{2})}\\
+&=\frac{f(x_{1})f(S_{2}-x_{1})}{\int_{-\infty}^{+\infty}f(x_{1})f(S_{2}-x_{1})\mathrm{d}x_{1}}
+\end{align*}
+
+\subsection*{3.}
+
+
+Suppose the joint density of $X,Y$ is $f(x,y)$. Let $t=x+y$, We have $f_{x,t}(x,t)=f(x,t-x), f_{y,t}(y,t)=f(y,t-y)$.
+
+\begin{align*}
+E(X-Y|X+Y)&=E(X|t)-E(Y|t)\\
+&=\int_{-\infty}^{+\infty}xf_{x|t}(x|t)\mathrm{d}x-\int_{-\infty}^{+\infty}yf_{y|t}(y|t)\mathrm{d}y\\
+&=\int_{-\infty}^{+\infty}x\frac{f_{x,t}(x,t)}{\int_{-\infty}^{+\infty}f_{x,t}(x,t)\mathrm{d}x}\mathrm{d}x-\int_{-\infty}^{+\infty}y\frac{f_{y,t}(y,t)}{\int_{-\infty}^{+\infty}f_{y,t}(y,t)\mathrm{d}y}\mathrm{d}y\\
+&=\int_{-\infty}^{+\infty}x\frac{f(x,t-x)}{\int_{-\infty}^{+\infty}f(x,t-x)\mathrm{d}x}\mathrm{d}x-\int_{-\infty}^{+\infty}y\frac{f(y,t-y)}{\int_{-\infty}^{+\infty}f(y,t-y)\mathrm{d}y}\mathrm{d}y\\
+&=0
+\end{align*}
+
+\subsection*{4.}
+\begin{align*}
+F_{Y}(y)&=P(Y\leq y)\\
+&=P(\max_{i=1,2,\cdots,n}\{X_{1},X_{2},\cdots,X_{n}\}\leq y)\\
+&=P(X_{1}\leq y,X_{2}\leq y,\cdots,X_{n}\leq y)\\
+&=\Pi_{i=1}^{n}P(X_{i}\leq y)\\
+&=(F(y))^{n}
+\end{align*}
+So, $f_{Y}(y)=n(F(y))^{n-1}f(y)$. Suppose $X_{i}\sim N(0,1)$, we get
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=8cm]{STT886Homework3.jpg}\\
+\end{figure}
+
+\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+from scipy import integrate
+mu=0
+sigma=1
+pi=2*math.acos(0)
+
+def px(x):
+    return 1/(math.sqrt(2*pi*sigma))*math.exp(-((x-mu)**2)/(2*sigma**2))
+
+def Fx(x):
+    res = integrate.quad(px,-np.inf,x)
+    return res[0]
+
+y=[]
+for i in range(1,21):
+    ypy=lambda y:y*i*px(y)*Fx(y)**(i-1)
+    res=integrate.quad(ypy,-np.inf,np.inf)[0]
+    y.append(res)
+
+x=list(range(1,21))
+fig, ax=plt.subplots(figsize=(10,10))
+ax.plot(x,y,color='g')
+plt.xlabel("n")
+plt.ylabel("E(Yn)")
+plt.savefig("STT886HomeWork3.jpg")
+plt.show()
+
+\end{minted}
+\end{document}
