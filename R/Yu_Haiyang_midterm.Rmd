@@ -1,0 +1,79 @@
+---
+title: "Untitled"
+author: "Yu Haiyang"
+date: "October 9, 2019"
+output: pdf_document
+---
+```{r}
+library(MASS)
+data=birthwt
+bwt=data[,10]
+n=length(bwt)
+bwt2=numeric(n)
+for(i in 1:n)
+{
+  if(bwt[i]<2400)
+    bwt2[i]=1
+  else
+    bwt2[i]=0
+}
+NegLoglik=function(X,y,b){
+  eta=X%*%b
+  p=exp(eta)/(1+exp(eta))
+  lik_vec=ifelse(y==1,log(p),log(1-p))
+  Loglik=sum(lik_vec)
+  return(-Loglik)
+}
+x=cbind(rep(1,n),data[,2],data[,4],data[,5])
+y=bwt2
+b.ini=rep(0,time=ncol(x))
+optim(fn=NegLoglik, X=x, y=y, par=b.ini) 
+
+
+i=1
+while(i<7)
+{
+  a=(-1/i)^i
+  i=i+1
+  print(a)
+}
+
+NegLoglin_Poission=function(X,y,b){
+  u=X%*%b
+  lik_vec=y*log(u)-u-log(factorial(y))
+  Loglik=sum(lik_vec)
+  return(-Loglik)
+}
+
+
+data=read.table("crabdata.txt",head=T)
+y=data[,4]
+n=length(y)
+x=cbind(rep(1,n),data[,3],data[,5])
+b.ini=rep(1,time=ncol(x))
+optim(fn=NegLoglin_Poission, X=x, y=y, par=b.ini)
+
+
+
+
+
+H0=function(x)
+{
+  return(x/2)
+}
+
+S=function(x,z,beta)
+{
+  tmp=-H0(x)*exp(z%*%beta)
+  return(exp(tmp))
+}
+set.seed(12345)
+beta=c(1,1)
+z1=runif(1,0,10)
+z2=runif(1,0,5)
+z=cbind(z1,z2)
+x1=S(0.00001,z,beta)
+x2=S(13,z,beta)
+print(x1)
+print(x2)
+```

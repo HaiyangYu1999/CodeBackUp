@@ -1,0 +1,28 @@
+set.seed(1000)
+LR2=c(0,0.01,0.03,0.05,0.1,0.2)
+LN=c(10,20,30,50,100,200)
+nRep=10000
+rejectRate=matrix(NA,nrow=length(LN),ncol=length(LR2))
+for(s in 1:length(LN))
+{
+  for(j in 1:length(LR2))
+  {
+    
+    R2=LR2[j] # Model R-sq.
+    N=LN[s] # sample size
+    countRejections=rep(0, length(R2)) # We count rejections for every scenario
+    b=sqrt(R2)
+    pValues=rep(NA,nRep)
+    for(i in 1:nRep){
+      x=rnorm(N)
+      signal=x*b # var(xb)=var(x)*var(b)=var(x)b^2=R2
+      error=rnorm(sd=sqrt(1-R2),n=N) 
+      y=signal+error
+      fm=lsfit(y=y,x=x) # equivalent to lm (i.e., fits model via OLS) but faster
+      pValues[i]=ls.print(fm,print.it = FALSE)$coef[[1]][2,4]
+    }
+    reject=pValues<.05 # decision rule
+    rejectRate[s,j]=mean(reject)
+  }
+}
+print(rejectRate)

@@ -1,0 +1,50 @@
+DATA=read.table('wages.txt',header=T,stringsAsFactors=F)
+
+## model
+
+model='Wage~Education+South+Black+Hispanic+Sex+Married+Experience+Union'  
+fm=lm(model,data=DATA)
+
+# Pediction equation
+ED=6:18
+Z=cbind(1,ED,0,0,0,0,0,4,0) # male, north, not married, non-union, white, 4 yr of experience
+yHat=Z%*%coef(fm)
+plot(yHat~ED,type='o',col=4)
+
+##bootstrap
+X=DATA[-9]
+nrow(X)
+y=DATA[,9]
+nRep=5000
+n=nrow(X)
+B=matrix(nrow=nRep,ncol=ncol(X))
+yHat=matrix(NA,nrow=nRep,ncol=13)
+
+for(i in 1:nRep){
+  # creating a bootstrap sample
+  # (note: the match between y and X is preserved)
+  tmp=sample(1:n,size=n,replace=T)
+  tmpY=y[tmp] 
+  tmpX=X[tmp,]
+  fm=lm(tmpY~as.matrix(tmpX)-1) 
+  ED=6:18
+  for(j in 1:13)
+  {
+    Z=cbind(ED[j],0,0,0,0,0,4,0)
+    yHat[i,j]=Z%*%coef(fm)
+  }
+}
+
+yMean=rep(NA,13)
+yUpQtl=rep(NA,13)
+yLowQtl=rep(NA,13)
+for(i in 1:13)
+{
+  yMean[i]=mean(yHat[,i])
+  yUpQtl[i]=quantile(yHat[,i],0.975)
+  yLowQtl[i]=quantile(yHat[,i],0.025)
+}
+plot(ED,yMean,type='l')
+lines(ED,yUpQtl)
+lines(ED,yLowQtl)
+

@@ -1,0 +1,48 @@
+---
+title: "Inclass5_YuHaiyang"
+author: "Yu Haiyang"
+date: "November 6, 2019"
+output: pdf_document
+---
+
+```{r}
+getData=function(n,p,R2=.5,nHA=10){ 
+  HA=rep(FALSE,p)
+  HA[sample(1:p,size=nHA)]=TRUE
+  
+  effects=rnorm(.3,sd=.2,n=nHA)
+  X=matrix(nrow=n,ncol=p,rnorm(n*p))
+  
+  signal=X[,HA]%*%effects
+  
+  error=rnorm(sd=sqrt(var(signal)*(1-R2)/R2),n=n)
+  y=signal+error
+  DATA=list(y=y,signal=signal,error=error,X=X,HA=HA)
+  return(DATA)
+}
+
+
+
+nRep=1000
+FDP=rep(NA,nRep)
+
+
+for(i in 1:nRep){
+
+  DATA=getData(n=300,p=500,R2=.5,nHA=15)
+  
+  y=DATA$y
+  X=DATA$X
+  HA=DATA$HA
+  pValues=rep(NA,ncol(X))
+  
+  for(j in 1:ncol(X)){
+	fm=lsfit(y=y,x=X[,j])
+    pValues[j]=ls.print(fm,print.it=F)[[2]][[1]][2,4]
+  }
+  FDR=p.adjust(pValues,method='fdr')
+  reject=FDR<0.1
+  FDP[i]=sum(reject&(!HA))/sum(reject)
+  print(round(mean(FDP,na.rm=T),4))
+}
+```

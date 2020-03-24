@@ -1,0 +1,54 @@
+---
+title: "inclass_YuHaiyang1"
+author: "Yu Haiyang"
+date: "October 21, 2019"
+output: pdf_document
+---
+
+```{r}
+set.seed(1000)
+N=10000
+Y=rep(0,N)
+theta=0.2
+U=runif(N)
+X=ifelse(U<theta,0,1)
+for(i in 1:N)
+{
+  if(X[i]==0)
+  {
+    u=runif(1)
+    gamma=0.5
+    Y[i]=ifelse(u<gamma,0,1)
+  }
+  else
+  {
+    u=runif(1)
+    gamma=1/4
+    Y[i]=ifelse(u<gamma,0,1)
+  }
+}
+x00=0
+x01=0
+x10=0
+x11=0
+for(i in 1:N)
+{
+  if(X[i]==0&&Y[i]==0)
+    x00=x00+1
+  if(X[i]==0&&Y[i]==1)
+    x01=x01+1
+  if(X[i]==1&&Y[i]==0)
+    x10=x10+1
+  if(X[i]==1&&Y[i]==1)
+    x11=x11+1
+}
+
+cat("mean(X)=",mean(X),sep="")
+cat("mean(Y)=",mean(Y),sep="")
+cat("      Y=0    Y=1")
+cat("X=0",x00/N,x01/N)
+cat("X=1",x10/N,x11/N)
+
+
+
+```
