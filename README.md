@@ -6,7 +6,7 @@
 
 
 
-## These are some codes that I studied in the  college.
+## These are some codes that I studied in the college.
 
 
 
