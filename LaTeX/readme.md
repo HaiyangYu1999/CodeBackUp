@@ -1,2 +1,2 @@
-Some LaTeX files about Latex syntax for reference.
+Some LaTeX files about Latex syntax for reference and backup.
 
