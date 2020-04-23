@@ -109,7 +109,7 @@ function figure1_CloseRequestFcn(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: delete(hObject) closes the figure
-button=questdlg('Are you sure you want to exit HXT''s GUI? ','Confirm Exit','Exit','Cancel','Exit');
+button=questdlg('Are you sure you want to exit Haiyang Yu''s GUI? ','Confirm Exit','Exit','Cancel','Exit');
 if strcmp(button,'Exit')
       delete(hObject);
 end
