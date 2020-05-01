@@ -1,0 +1,42 @@
+\documentclass{ctexart}
+\usepackage{amsmath,amssymb}
+\DeclareSymbolFont{EulerExtension}{U}{euex}{m}{n}
+\DeclareMathSymbol{\euintop}{\mathop} {EulerExtension}{"52}
+\DeclareMathSymbol{\euointop}{\mathop} {EulerExtension}{"48}
+\let\intop\euintop
+\let\ointop\euointop
+\pagestyle{plain}
+
+\begin{document}
+\noindent(1)若$f$连续($f$连续是为了保证积分换序的正确性),证明:
+$$\int_{a}^{b}\mathrm{d}x\int^{x}_{a}\mathrm{d}y\int^{y}_{a}f(x,y,z)\mathrm{d}z=\int_{a}^{b}\mathrm{d}z\int^{b}_{z}\mathrm{d}y\int^{b}_{y}f(x,y,z)\mathrm{d}x$$
+\newline
+\newline
+\newline
+(2)仔细分析下题的解题步骤,并证明:$$\int_{0}^{a}\mathrm{d}x\int^{x}_{0}\mathrm{d}y\int_{0}^{y}f(x)f(y)f(z)\mathrm{d}z=\frac{1}{3!}\left(\int_{0}^{a}f(t)\mathrm{d}t\right)^{3}$$
+\newline
+\newline
+\textbf{例:}若$f$连续,证明:$$\int_{0}^{a}\mathrm{d}x\int^{x}_{0}f(x)f(y)\mathrm{d}y=\frac{1}{2}\left(\int_{0}^{a}f(t)\mathrm{d}t\right)^{2}$$
+
+\textbf{解:}
+\begin{flalign}
+\int_{0}^{a}\mathrm{d}x\int^{x}_{0}f(x)f(y)\mathrm{d}y=\int_{0}^{a}f(x)\left(\int^{x}_{0}f(y)\mathrm{d}y\right)\mathrm{d}x
+\end{flalign}
+由于$f(x)$的一个原函数为$\int_{0}^{x}f(y)\mathrm{d}y$,所以有$$f(x)\mathrm{d}x=\mathrm{d}\left(\int_{0}^{x}f(y)\mathrm{d}y\right)$$
+带入到(1)中有
+\begin{flalign}
+\int_{0}^{a}\mathrm{d}x\int^{x}_{0}f(x)f(y)\mathrm{d}y&=\int_{0}^{a}\left(\int^{x}_{0}f(y)\mathrm{d}y\right)\mathrm{d}\left(\int_{0}^{x}f(y)\mathrm{d}y\right)&\nonumber\\
+&=\frac{1}{2}\int_{0}^{a}\mathrm{d}\left(\int_{0}^{x}f(y)\mathrm{d}y\right)^{2}\nonumber\\
+&=\frac{1}{2}\left(\int_{0}^{a}f(y)\mathrm{d}y\right)^{2}\nonumber
+\end{flalign}
+此处不要被复杂的积分号弄乱思路,时刻谨记$\int^{x}_{0}f(y)\mathrm{d}y$只是一个关于$x$的函数$F(x)$,如果作换元$F(x)=\int^{x}_{0}f(y)\mathrm{d}y$,则$f(x)=F'(x),F(0)=0$ 就很容易得到
+\begin{flalign}
+\int_{0}^{a}\mathrm{d}x\int^{x}_{0}f(x)f(y)\mathrm{d}y&=\int_{0}^{a}F'(x)\mathrm{d}x\int_{0}^{x}F'(y)\mathrm{d}y&\nonumber\\
+&=\int_{0}^{a}F'(x)F(x)\mathrm{d}x\nonumber\\
+&=\int_{0}^{a}F(x)\mathrm{d}F(x)\nonumber\\
+&=\frac{1}{2}\int_{0}^{a}\mathrm{d}F^{2}(x)\nonumber\\
+&=\frac{1}{2}F^{2}(a)=\frac{1}{2}\left(\int_{0}^{a}f(y)\mathrm{d}y\right)^{2}\nonumber
+\end{flalign}
+
+
+\end{document}

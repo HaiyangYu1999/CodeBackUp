@@ -1,0 +1,66 @@
+\documentclass{ctexart}
+\pagestyle{plain}
+\usepackage{amsmath}
+\begin{document}
+\begin{flalign}
+I&=\int_{x^{2}+y^{2}=R^{2}}\mathrm{ln}\frac{1}{\sqrt{(x-h)^{2}+y^{2}}}\ \mathrm{d}s&\nonumber\\
+&=-\frac{1}{2}\int_{x^{2}+y^{2}=R^{2}}\mathrm{ln}((x-h)^{2}+y^{2})\ \mathrm{d}s&\nonumber\\
+&=-\frac{1}{2}\int_{0}^{2\mathrm{\pi}}R\ \mathrm{ln}(R^{2}-2Rh\ \mathrm{cos}\ t+h^{2})\ \mathrm{d}t&\nonumber\\
+&=-R\int_{0}^{\mathrm{\pi}}\mathrm{ln}(R^{2}-2Rh\ \mathrm{cos}\ t+h^{2})\ \mathrm{d}t&
+\end{flalign}
+不妨设$R>h$,令$R/h=a$,则$a>1$,由(1)有
+\begin{flalign}
+I&=-R\int_{0}^{\mathrm{\pi}}\mathrm{ln}(h^{2})+\mathrm{ln}((\frac{R}{h})^{2}-2(\frac{R}{h})\ \mathrm{cos}\ t+1)\ \mathrm{d}t&\nonumber\\
+&=-2\pi R\ \mathrm{ln}\ h-R\int_{0}^{\mathrm{\pi}}\mathrm{ln}(a^{2}-2a\ \mathrm{cos}\ t+1)\ \mathrm{d}t&\nonumber
+\end{flalign}
+令$f(a)=\int_{0}^{\mathrm{\pi}}\mathrm{ln}(a^{2}-2a\ \mathrm{cos}\ t+1)\ \mathrm{d}t$
+\begin{flalign}
+f'(a)&=\int_{0}^{\mathrm{\pi}}\frac{2a-2\ \mathrm{cos}\ t}{a^{2}-2a\ \mathrm{cos}\ t+1}\ \mathrm{d}t&\nonumber\\
+&=\int_{0}^{\mathrm{\pi}}\frac{1}{a}+\frac{a-\frac{1}{a}}{a^{2}-2a\ \mathrm{cos}\ t+1}\ \mathrm{d}t&\nonumber\\
+&=\frac{\pi}{a}+(a-\frac{1}{a})\int_{0}^{\mathrm{\pi}}\frac{\mathrm{d}t}{a^{2}-2a\ \mathrm{cos}\ t+1}&\nonumber
+\end{flalign}
+令$\mathrm{tan}\ \frac{t}{2}=u$,则$\mathrm{d}t=\frac{2}{1+u^{2}}\ \mathrm{d}u$,$\mathrm{cos}\ t=\frac{1-u^{2}}{1+u^{2}}$
+\begin{flalign}
+f'(a)&=\frac{\pi}{a}+2(a-\frac{1}{a})\int_{0}^{+\infty}\frac{\mathrm{d}u}{(a^{2}+1)(u^{2}+1)+2a(u^{2}-1)}&\nonumber\\
+&=\frac{\pi}{a}+\frac{2(a-\frac{1}{a})}{(a+1)^{2}}\int_{0}^{+\infty}\frac{\mathrm{d}u}{u^{2}+(\frac{a-1}{a+1})^{2}}&\nonumber\\
+&=\frac{2\pi}{a}\nonumber
+\end{flalign}
+而
+\begin{flalign}
+f(1)&=\int_{0}^{\mathrm{\pi}}\mathrm{ln}(2-2\ \mathrm{cos}\ t)\ \mathrm{d}t&\nonumber\\
+&=\int_{0}^{\frac{\mathrm{\pi}}{2}}\mathrm{ln}(2-2\ \mathrm{cos}\ t)\ \mathrm{d}t+\int_{\frac{\mathrm{\pi}}{2}}^{\mathrm{\pi}}\mathrm{ln}(2+2\ \mathrm{cos}\ (\pi-t))\ \mathrm{d}t&\nonumber\\
+&=\int_{0}^{\frac{\mathrm{\pi}}{2}}\mathrm{ln}(2-2\ \mathrm{cos}\ t)\ \mathrm{d}t+\int_{0}^{\frac{\mathrm{\pi}}{2}}\mathrm{ln}(2+2\ \mathrm{cos}\ t)\ \mathrm{d}t&\nonumber\\
+&=\int_{0}^{\frac{\mathrm{\pi}}{2}}\mathrm{ln}(4\ \mathrm{sin}^{2}\ t)\ \mathrm{d}t&\nonumber\\
+&=\frac{\pi\mathrm{ln}\ 4}{2}+2\int_{0}^{\frac{\mathrm{\pi}}{2}}\mathrm{ln}\ \mathrm{sin}\ t\ \mathrm{d}t&\nonumber
+\end{flalign}
+并且
+\begin{flalign}
+\int_{0}^{\frac{\mathrm{\pi}}{2}}\mathrm{ln}\ \mathrm{sin}\ t\ \mathrm{d}t&=\int_{0}^{\frac{\mathrm{\pi}}{4}}\mathrm{ln}\ \mathrm{sin}\ t\ \mathrm{d}t+\int_{\frac{\mathrm{\pi}}{4}}^{\frac{\mathrm{\pi}}{2}}\mathrm{ln}\ \mathrm{cos}(\frac{\mathrm{\pi}}{2}-t)\ \mathrm{d}t&\nonumber\\
+&=\int_{0}^{\frac{\mathrm{\pi}}{4}}\mathrm{ln}\ \mathrm{sin}\ t\ \mathrm{d}t+\int_{0}^{\frac{\mathrm{\pi}}{4}}\mathrm{ln}\ \mathrm{cos}\ t\ \mathrm{d}t&\nonumber\\
+&=\int_{0}^{\frac{\mathrm{\pi}}{4}}\mathrm{ln}\frac{\mathrm{sin}\ 2t}{2}\ \mathrm{d}t&\nonumber\\
+&=\frac{1}{2}\int_{0}^{\frac{\mathrm{\pi}}{2}}\mathrm{ln}\ \mathrm{sin}\ t\ \mathrm{d}t-\frac{\pi\mathrm{ln}\ 2}{4}&\nonumber
+\end{flalign}
+得到
+\begin{flalign}
+\int_{0}^{\frac{\mathrm{\pi}}{2}}\mathrm{ln}\ \mathrm{sin}\ t\ \mathrm{d}t&=-\frac{\pi\mathrm{ln}\ 2}{2}&\nonumber
+\end{flalign}
+所以$f(1)=0$
+\begin{flalign}
+f(a)&=f(1)+\int_{1}^{a}f'(s)\ \mathrm{d}s&\nonumber\\
+&=2\pi\mathrm{ln}\ a&\nonumber
+\end{flalign}
+所以
+\begin{flalign}
+I&=-2\pi R\ \mathrm{ln}\ h-R\ f(a)&\nonumber\\
+&=-2\pi R\ \mathrm{ln}\ R&\nonumber
+\end{flalign}
+同理当$R<h$时,令$h/R=a$,则$a>1$
+由(1)有
+\begin{flalign}
+I&=-R\int_{0}^{\mathrm{\pi}}\mathrm{ln}(R^{2})+\mathrm{ln}((\frac{h}{R})^{2}-2(\frac{h}{R})\ \mathrm{cos}\ t+1)\ \mathrm{d}t&\nonumber\\
+&=-2\pi R\ \mathrm{ln}\ R-R\int_{0}^{\mathrm{\pi}}\mathrm{ln}(a^{2}-2a\ \mathrm{cos}\ t+1)\ \mathrm{d}t&\nonumber\\
+&=-2\pi R\ \mathrm{ln}\ R-R\ f(a)&\nonumber\\
+&=-2\pi R\ \mathrm{ln}\ h&\nonumber
+\end{flalign}
+所以$I=-2\pi R\ \mathrm{ln}(\mathrm{max}(h,R))$
+\end{document}

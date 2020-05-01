@@ -1,0 +1,69 @@
+\documentclass{ctexart}
+\usepackage{amsmath,amssymb}
+\DeclareSymbolFont{EulerExtension}{U}{euex}{m}{n}
+\DeclareMathSymbol{\euintop}{\mathop} {EulerExtension}{"52}
+\DeclareMathSymbol{\euointop}{\mathop} {EulerExtension}{"48}
+\let\intop\euintop
+\let\ointop\euointop
+\pagestyle{plain}
+
+\begin{document}
+
+有这样一类题,是求重积分的极限问题,并且重积分的边界趋于无穷.
+这样的题有一些简化积分区域的小技巧
+\newline
+\newline
+\textbf{例:}
+
+设矩阵$A=(a_{ij})_{n\times n}$正定矩阵,计算极限
+$$\lim_{R\rightarrow \infty}\int\int\cdots\int_{x_{1}^{2}+x_{2}^{2}+\cdots +x_{n}^{2}\leq R^{2}}\mathrm{e}^{-\sum\limits_{1\leq i,j\leq n}a_{ij}x_{i}x_{j}}\mathrm{d}x_{1}\mathrm{d}x_{2}\cdots\mathrm{d}x_{n}$$
+\newline
+一看到正定矩阵,就要想到实矩阵的对角化并且特征值全部大于0,并且变换矩阵是正交矩阵,那自然少不了正交换元.设$$A=P^{-1}\mathrm{diag}(\lambda_{1},\lambda_{2},\cdots,\lambda_{n})P$$那么$P$就是正交矩阵了,所以作换元
+\begin{equation}\nonumber
+{
+\left( \begin{array}{c}
+x_{1}\\
+x_{2}\\
+\vdots\\
+x_{n}\\
+\end{array}
+\right)=P\left( \begin{array}{c}
+y_{1}\\
+y_{2}\\
+\vdots\\
+y_{n}\\
+\end{array}
+\right)}
+\end{equation}
+
+
+接下来...你应该懂得(手动滑稽)
+,就变为了
+$$\lim_{R\rightarrow \infty}\int\int\cdots\int_{y_{1}^{2}+y_{2}^{2}+\cdots +y_{n}^{2}\leq R^{2}}\mathrm{e}^{-\lambda_{1}y_{1}^{2}-\lambda_{2}y_{2}^{2}\cdots-\lambda_{n}y_{n}^{2}}\mathrm{d}y_{1}\mathrm{d}y_{2}\cdots\mathrm{d}y_{n}$$
+
+这个积分仍然不方便算出,原因就是积分区域.假如积分区域为$\mathbb{R}^{n}$就很容易积出了,但是,通过类比
+二维圆$$\{(x,y):x^{2}+y^{2}\leq R^{2}\}\subseteq\{(x,y):x\leq |R|,y\leq |R|\}\subseteq\{(x,y):x^{2}+y^{2}\leq 2R^{2}\}$$
+即一个正方形总在一个它的内接圆和一个外接圆之间.
+
+对于三维球$$\{x^{2}+y^{2}+z^{2}\leq R^{3}\}\subseteq\{x\leq |R|,y\leq |R|,z\leq |R|\}\subseteq\{x^{2}+y^{2}+z^{2}\leq 3R^{3}\}$$
+即一个正方体总在一个它的内接球和一个外接球之间.
+
+对于n维球,也有$$\{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}\leq R^{n}\}\subseteq\{x_{1}\leq |R|,x_{2}\leq |R|,\cdots,x_{n}\leq |R|\}\subseteq\{x_{1}^{2}+x_{2}^{2}+\cdots+x_{n}^{2}\leq nR^{n}\}$$
+
+又因为被积函数在任何区域都为正,所以$$\int_{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}\leq R^{n}}f\mathrm{d}u\leq\int_{x_{1}\leq |R|,x_{2}\leq |R|,\cdots,x_{n}\leq |R|}f\mathrm{d}u\leq\int_{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}\leq nR^{n}}f\mathrm{d}u$$
+
+当$R\rightarrow +\infty$时,假如极限$$\lim_{R\rightarrow +\infty}\int_{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}\leq R^{n}}f\mathrm{d}u$$存在,由夹挤定理知$$\lim_{R\rightarrow +\infty}\int_{x_{1}\leq |R|,x_{2}\leq |R|,\cdots,x_{n}\leq |R|}f\mathrm{d}u=\lim_{R\rightarrow +\infty}\int_{x_{1}^{2}+x_{2}^{2}+x_{3}^{2}\leq R^{n}}f\mathrm{d}u$$
+
+所以就把积分区域简化为$[-\infty,+\infty]^{n}$
+
+然后只需计算$$\int^{+\infty}_{-\infty}\int^{+\infty}_{-\infty}\cdots\int^{+\infty}_{-\infty}
+\mathrm{e}^{-\lambda_{1}y_{1}^{2}-\lambda_{2}y_{2}^{2}\cdots-\lambda_{n}y_{n}^{2}}\mathrm{d}y_{1}\mathrm{d}y_{2}\cdots\mathrm{d}y_{n}$$
+
+即$$\prod_{i=1}^{n}\int^{+\infty}_{-\infty}\mathrm{e}^{-\lambda_{i}y_{i}^{2}}\mathrm{d}y_{i}$$
+
+
+
+虽然n重积分基本上不会考到,但是利用极限简化积分区域这种方法还是有用的.
+可以在2,,3维半径趋于无穷的球或者椭球在球坐标变换不方便时试用
+也可以是在不太规则的距离远点距离趋于无穷的几何形体上使用.
+\end{document}

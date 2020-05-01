@@ -1,0 +1,21 @@
+\documentclass{ctexart}
+\pagestyle{plain}
+\usepackage{amsmath}
+\begin{document}
+\begin{flalign}
+\int_{0}^{+\infty}x\mathrm{e}^{-\alpha x^{2}}\ \mathrm{sin}\ bx\ \mathrm{d}x&=-\frac{1}{2\alpha}\int_{0}^{+\infty}\mathrm{sin}\ bx\ \mathrm{d}\mathrm{e}^{-\alpha x^{2}}&\nonumber\\
+&=-\frac{1}{2\alpha}[\mathrm{e}^{-\alpha x^{2}}\mathrm{sin}\ bx]^{+\infty}_{0}+\frac{1}{2\alpha}\int_{0}^{+\infty}\mathrm{e}^{-\alpha x^{2}}\ \mathrm{d}(\mathrm{sin}\ bx)&\nonumber\\
+&=\frac{b}{2\alpha}\int_{0}^{+\infty}\mathrm{e}^{-\alpha x^{2}}\ \mathrm{cos}\ bx\ \mathrm{d}x\nonumber
+\end{flalign} 
+注意到$\int_{0}^{+\infty}\mathrm{e}^{-\alpha x^{2}}\ \mathrm{cos}\ bx\ \mathrm{d}x$对$b$的导数是$-\int_{0}^{+\infty}x\mathrm{e}^{-\alpha x^{2}}\ \mathrm{sin}\ bx\ \mathrm{d}x$,令$I(b)=\int_{0}^{+\infty}\mathrm{e}^{-\alpha x^{2}}\ \mathrm{cos}\ bx\ \mathrm{d}x$,这样由上面的推导就有$$I'(b)=-\frac{b}{2\alpha}I(b)$$
+即$$\frac{\mathrm{d}I}{\mathrm{d}b}=-\frac{bI}{2\alpha}$$
+$$\frac{\mathrm{d}I}{I}=-\frac{b\ \mathrm{d}b}{2\alpha}$$
+两边同时对积分得
+$$\mathrm{ln}\ I=-\frac{b^{2}}{4\alpha}+c$$
+即$$I=c\mathrm{e}^{-\frac{b^{2}}{4\alpha}}$$
+又因为$b=0$时,
+$$I(0)=c=\int_{0}^{+\infty}\mathrm{e}^{-\alpha x^{2}}\ \mathrm{d}x=\frac{\sqrt{\pi}}{2\sqrt{\alpha}}$$
+所以
+$$I(b)=\frac{\sqrt{\pi}}{2\sqrt{\alpha}}\mathrm{e}^{-\frac{b^{2}}{4\alpha}}$$
+原积分$=\frac{b}{2\alpha}I(b)=\frac{\sqrt{\pi}b}{4\alpha\sqrt{\alpha}}\mathrm{e}^{-\frac{b^{2}}{4\alpha}}$
+\end{document} 

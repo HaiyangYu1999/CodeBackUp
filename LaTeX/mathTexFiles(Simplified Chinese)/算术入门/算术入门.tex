@@ -1,0 +1,64 @@
+\documentclass{ctexart}
+\usepackage{graphicx}
+\title{算数入门}
+\date{}
+\begin{document}
+\maketitle
+
+先假设你有一支玫瑰
+
+\includegraphics[width=1.5cm,height=2cm]{1.jpg}
+
+
+
+假设喜欢你的男生又给了你另一支玫瑰
+
+\includegraphics[width=1.5cm,height=2cm]{1.jpg}
+\includegraphics[width=1.5cm,height=2cm]{1.jpg}
+
+
+现在，数一下你所拥有的玫瑰数量，你会得到结果是两支。也就是说一支玫瑰加一支玫瑰等于两支玫瑰，也就是一加一等于二。$$1+1=2$$
+
+这就是算数的运算方法了。
+
+
+那么，现在你已经对算数的基本原理有了一定了解，就让我们来看一看下面这个简单的例子，来把我们刚刚学到的知识运用到实践中吧。
+
+
+
+
+\noindent
+\fbox{试试看！\textbf{例} }
+
+
+证明：
+
+
+(1)$$\lim\limits_{n \to \infty }\frac{(2n)!!}{(2n-1)!!\sqrt{n}}=\sqrt{\pi}$$
+
+
+(2)$$\int_{0}^{+\infty}e^{-x^{2}} dx=\frac{\sqrt{\pi}}{2}$$
+
+
+证明：
+
+(1)对于$n\in N^{*}$，$0<x<\frac{\pi}{2}$,有
+$$sin^{2n+1}x<sin^{2n}x<sin^{2n-1}x$$
+从0到$\frac{\pi}{2}$作积分，得到$$\int_{0}^{\frac{\pi}{2}}sin^{2n+1}xdx<\int_{0}^{\frac{\pi}{2}}sin^{2n}xdx<\int_{0}^{\frac{\pi}{2}}sin^{2n-1}xdx$$
+计算得$$\frac{(2n)!!}{(2n+1)!!}<\frac{(2n-1)!!}{(2n)!!}\cdot\frac{\pi}{2}<\frac{(2n-2)!!}{(2n-1)!!}$$
+变形后得$$\frac{2n}{2n+1}\cdot\frac{\pi}{2}<\frac{((2n)!!)^{2}}{(2n+1)((2n-1)!!)^{2}}<\frac{\pi}{2}$$
+由夹逼定理，可知$$\lim\limits_{n \to \infty }\frac{1}{2n+1}(\frac{(2n)!!}{(2n-1)!!})^{2}=\frac{\pi}{2}$$
+化简得$$\lim\limits_{n \to \infty }\frac{(2n)!!}{(2n-1)!!\sqrt{n}}=\sqrt{\pi}$$
+
+
+(2)利用不等式$$ 1-x^{2}\leq e^{-x^{2}} (0\leq x\leq 1),e^{-x^{2}}\leq \frac{1}{1+x^{2}}(x\geq 0)$$
+可得$$\int_{0}^{1}(1-x^{2})^{n}dx \leq \int_{0}^{1}e^{-nx^{2}}dx<\int_{0}^{+\infty}e^{-nx^{2}}dx
+\leq \int_{0}^{+\infty}\frac{dx}{(1+x^{2})^{n}}$$
+作换元$t=\sqrt{n}x$,可得$$\sqrt{n}\int_{0}^{1}(1-x^{2})^{n}dx \leq \int_{0}^{\sqrt{n}}e^{-t^{2}}dt\leq \sqrt{n}\int_{0}^{+\infty}\frac{dx}{(1+x^{2})^{n}}$$
+即$$\frac{\sqrt{n}(2n)!!}{(2n+1)!!}<\int_{0}^{\sqrt{n}}e^{-t^{2}}dt<\frac{\sqrt{n}(2n-3)!!}{(2n-2)!!}\cdot\frac{\pi}{2}$$
+令$n\rightarrow\infty$,利用(1)的结论，得到$$\int_{0}^{+\infty}e^{-x^{2}} dx=\frac{\sqrt{\pi}}{2}$$
+
+
+
+
+\end{document}

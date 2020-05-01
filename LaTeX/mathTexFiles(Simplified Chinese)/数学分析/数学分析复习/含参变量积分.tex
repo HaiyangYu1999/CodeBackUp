@@ -1,0 +1,222 @@
+\documentclass{ctexart}
+\usepackage{amsmath,amssymb,bm}
+\DeclareSymbolFont{EulerExtension}{U}{euex}{m}{n}
+\DeclareMathSymbol{\euintop}{\mathop} {EulerExtension}{"52}
+\DeclareMathSymbol{\euointop}{\mathop} {EulerExtension}{"48}
+\let\intop\euintop
+\let\ointop\euointop
+\pagestyle{plain}
+\begin{document}
+\subsection*{1.求极限问题}
+这种题的一般形式就是$$\lim_{a \rightarrow \alpha}\int_{a}^{b}f(x,a)\mathrm{d}x$$
+这种题真的很简单,
+做法就是把极限带入到被积函数中,被积函数求极限后会变得灰常简单.
+
+但要知道这样做的根据.(假如题目要求说明这样做的理由,需要有恰当的解释,下面的定理是这样做的理论依据)(定理也要看看嘛,说不定定理证明就考这一个呢)
+
+\textbf{定理1(极限和积分换序):}如果函数$f$在闭矩形$I=[a,b]\times[\alpha,\beta]$上连续,那么$$\varphi(u)=\int_{a}^{b}f(x,u)\mathrm{d}x$$是区间$[\alpha,\beta]$上的连续函数.
+
+\textbf{证明:}任取$u_{0}\in[\alpha,\beta]$,我们证明$\varphi$在$u_{0}$处连续.从
+\begin{equation}
+\varphi(u)-\varphi(u_{0})=\int_{a}^{b}(f(x,u)-f(x,u_{0}))\mathrm{d}x
+\end{equation}
+得到
+$$|\varphi(u)-\varphi(u_{0})|\leq \int_{a}^{b}|f(x,u)-f(x,u_{0})|\mathrm{d}x$$
+由于$f$在闭矩形上连续,所以必定一致连续,因而对任意的$\varepsilon>0$,存在$\delta>0$,对闭矩形$I$中任意的两点$(x_{1},u_{1}),(x_{2},u_{2})$,只要它们的距离小于$\delta$,就有$$|f(x_{1},u_{1})-f(x_{2},u_{2})|\leq \varepsilon$$
+由于点$(x,u)$和点$(x,u_{0})$的距离等于$|u-u_{0}|$,所以当$|u-u_{0}|<\delta$时,$$|f(x,u)-f(x,u_{0})|\leq \varepsilon$$对任意的$x\in[a,b]$成立,于是由$(1)$,即得
+$$|\varphi(u)-\varphi(u_{0})|<\varepsilon(b-a)$$
+这就证明了$\varphi$在$u_{0}$处连续,由于$u_{0}$是$[\alpha,\beta]$中的任意一点,所以$\varphi$在$[\alpha,\beta]$上连续.
+
+注意，$\varphi$在$u_{0}$连续意味着\begin{equation}\lim_{u\rightarrow u_{0}}\varphi(u)=\varphi(u_{0})\end{equation}
+而$$\varphi(u_{0})=\int_{a}^{b}f(x,u_{0})\mathrm{d}x=\int_{a}^{b}\lim_{u\rightarrow u_{0}}f(x,u)\mathrm{d}x$$
+这样,式(2)可以写为$$\lim_{u\rightarrow u_{0}}\int_{a}^{b}f(x,u)\mathrm{d}x=\int_{a}^{b}\lim_{u\rightarrow u_{0}}f(x,u)\mathrm{d}x$$
+这就是说,$f$的连续性可以保证积分和极限交换顺序.
+\newline
+\newline
+\indent\textbf{练习:}
+
+计算下列极限:
+
+(1)$\lim\limits_{x\rightarrow 0}\int_{-1}^{1}\sqrt{x^{2}+y^{2}}\mathrm{d}y$
+
+(2)$\lim\limits_{t\rightarrow 0}\int_{0}^{2}x^{2}\mathrm{cos}\ tx\mathrm{d}x$
+
+(3)$\lim\limits_{\alpha\rightarrow 0}\int_{\alpha}^{\alpha+\frac{\pi}{2}}\frac{\mathrm{sin}^{2}x}{4+\alpha x^{2}}\mathrm{d}x$
+
+\subsection*{2.积分号下求导问题}
+
+这种题的一般形式就是$$F(u)=\int_{p(u)}^{q(u)}f(x,u)\mathrm{d}x$$
+求$F'(u)$
+
+这种题也算比较简单,套公式就可以了,注意不要算错
+
+这样做的根据是:
+
+假如$f$和$\frac{\partial f}{\partial u}$在闭矩形$I=[a,b]\times[\alpha,\beta]$上连续,并且当$u$有界时,$p(u),q(u)$都有界,那么$F$在$[\alpha,\beta]$上可微,并且
+$$F'(u)=\int_{p(u)}^{q(u)}\frac{\partial f(x,u)}{\partial u}\mathrm{d}x+f(q(u),u)q'(u)-f(p(u),u)p'(u)$$
+(注意:公式中积分号下限的那个函数求导前边的是负号)(看下这个定理的证明,有可能会考)
+
+\textbf{练习:}
+
+计算下列函数的导数:
+
+(1)$f(x)=\int_{\mathrm{sin}\ x}^{{\mathrm{cos}\ x}}\mathrm{e}^{(1+t)^{2}}\mathrm{d}t$
+
+(2)$f(x)=\int_{x}^{x^{2}}\mathrm{e}^{-x^{2}u^{2}}\mathrm{d}u$
+
+(3)$f(x)=\int_{a+x}^{b+x}\frac{\mathrm{sin}\ xt}{t}\mathrm{d}t$
+
+(4)$f(u)=\int_{0}^{u}g(x+u,x-u)\mathrm{d}x$
+
+(5)$f(t)=\int_{0}^{t^{2}}\mathrm{d}x\int_{x-t}^{x+t}\mathrm{sin}(x^{2}+y^{2}-t^{2})\mathrm{d}y$
+\subsection*{3.利用对参数的微分法,计算积分}
+
+这部分内容的特点是积分上下限都为有限值,假如\textbf{上限是}$+\infty$\textbf{才会去考虑是否一致收敛},如果上下限都是有限值,那么只要$f(x,u)$和$\frac{\partial f(x,u)}{\partial u}$ 连续,即可用这种方法计算复杂的积分.
+
+\textbf{练习:}
+
+利用对参数的微分法,计算下列积分:
+
+(1)$\int_{0}^{\pi/2}\mathrm{ln}(a^{2}\mathrm{sin}^{2}x+b^{2}\mathrm{cos}^{2}x)\mathrm{d}x$
+
+(2)$\int_{0}^{\pi/2}\mathrm{ln}\frac{1+a\mathrm{cos}\ x}{1-a\mathrm{cos}\ x}\frac{\mathrm{d}x}{\mathrm{cos}\ x},(|a|<1)$
+
+(3)$\int_{0}^{\pi/2}\frac{\mathrm{arctan}(a\mathrm{tan}\ x)}{\mathrm{tan}\ x}\mathrm{d}x$,(注意讨论$a$的正负)
+
+(4)$\int_{0}^{\pi}\mathrm{ln}(1+a\mathrm{cos}\ x)\mathrm{d}x,|a|<1$
+
+(5)$\int_{0}^{1}\frac{x^{2}-x}{\mathrm{ln}\ x}\mathrm{d}x$
+
+(6)$\int^{1}_{0}\frac{\mathrm{arctan}\ x}{x\sqrt{1-x^{2}}}\mathrm{d}x$
+
+(7)$\int_{0}^{1}\frac{\mathrm{ln}(1+x)}{1+x^{2}}\mathrm{d}x$
+
+(8)$\int_{0}^{a}\mathrm{arctan}\sqrt{\frac{a-x}{a+x}}\mathrm{d}x$
+
+利用交换积分次序的方法,计算下列积分:
+
+(9)$\int_{0}^{1}\mathrm{sin}(\mathrm{ln}\frac{1}{x})\frac{x^{b}-x^{a}}{\mathrm{ln}\ x}\mathrm{d}x$
+
+
+\subsection*{4.一致收敛}
+
+
+对于积分上限是$+\infty$的积分,假如交换积分和极限，或者积分号内求导，就必须加上条件是对参数一致收敛
+
+例如$$\lim_{u\rightarrow u_{0}}\int_{a}^{+\infty}f(x,u)\mathrm{d}x=\int_{a}^{+\infty}\lim_{u\rightarrow u_{0}}f(x,u)\mathrm{d}x$$
+成立的条件就不只有$f$在$[a,+\infty]\times[\alpha,\beta]$上连续了,还要加上$\int_{a}^{+\infty}f(x,u)\mathrm{d}x$在$[\alpha,\beta]$一致收敛.
+
+所以,如果某个求极限的题需要用到极限和积分换序,并且积分上限是无穷,一定要先说明这个积分在极限点附近一致收敛.
+
+同理,假如用到对参数求导后求积分这种方法时,如果积分上限是无穷,也需要先判断是不是在$[\alpha,\beta]$一致收敛，其中$[\alpha,\beta]$是参数需要求积分的区域.
+
+
+
+证明一致收敛的常用方法有3个,分别是控制判别法,Abel，dirichlet
+
+证明不一致收敛只能用cauchy.
+
+控制判别法:假如存在$F(x)$对于任意的$u\in[\alpha,\beta]$,都有$|f(x,u)|<F(x)$,并且$\int_{a}^{+\infty}F(x)\mathrm{d}x$收敛,则$f(x,u)$一致收敛
+
+dirichlet:$f(x,u)$对于任意的$u$都是单调的,并且当$x$趋于无穷时对于$u\in[\alpha,\beta]$一致的趋于0,$\int_{a}^{+\infty}g(x,u)\mathrm{d}x$对于$u\in[\alpha,\beta]$一致有界,可以推出$\int_{a}^{+\infty}f(x,u)g(x,u)\mathrm{d}x$一致收敛.
+
+abel:$\int_{a}^{+\infty}f(x,u)\mathrm{d}x$对于$u\in[\alpha,\beta]$一致收敛,$g(x,u)$对于任意的$u$都是单调的,并且对于$u\in[\alpha,\beta]$一致有界,可以推出$\int_{a}^{+\infty}f(x,u)g(x,u)\mathrm{d}x$一致收敛.
+
+\textbf{练习:}
+
+证明下列积分在指定的区间一致收敛.
+
+(1)$\int_{0}^{+\infty}\mathrm{e}^{-(1+x^{2})t}\mathrm{sin}\ t\mathrm{d}x,t\in[0,+\infty)$(控制判别法)(再提示:$|\mathrm{e}^{-(1+x^{2})t}\mathrm{sin}\ t|\leq t\mathrm{e}^{-x^{2}t}\leq \frac{t}{1+x^{2}t}\leq \frac{1}{x^{2}}$)
+
+
+
+(2)$\int_{0}^{+\infty}\mathrm{e}^{-xu}\frac{\mathrm{sin}\ x}{x+u}\mathrm{d}x,u\in[0,+\infty)$(abel)
+
+(3)$\int_{0}^{+\infty}\mathrm{e}^{-xu}\mathrm{sin}\ x\mathrm{d}x,0<u_{0}\leq u<+\infty$(控制判别法,abel)
+
+(4)$\int_{-\infty}{+\infty}\frac{x^{2}\mathrm{cos}\ ux}{1+x^{4}}\mathrm{d}x,-\infty<u<+\infty$(控制判别法)
+
+(5)$\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+(x+u)^{2}},u\in[0,+\infty)$(控制判别法)
+
+(6)$\int_{1}^{+\infty}\mathrm{e}^{-xu}\frac{\mathrm{cos}\ x}{\sqrt{x}}\mathrm{d}x,u\in[0,+\infty)$(abel)
+
+对于证明不一致收敛,只能利用cauchy来证明,即证明对于\textbf{任意的}$A>0$,都存在一个$u_{0},A_{1}$,使得$$\left|\int_{A}^{A_{1}}f(x,u_{0})\mathrm{d}x\right|\leq \varepsilon_{0}$$
+
+\textbf{例:}  证明:$$\int_{0}^{+\infty}\frac{x\mathrm{cos}\ ux}{a^{2}+x^{2}}\mathrm{d}x$$在$(0,+\infty)$不一致收敛.
+
+\textbf{思路:}当$u$恒大于某个任意的正数$c$时,$|\int_{0}^{+\infty}\mathrm{cos}\ ux\mathrm{d}x|\leq \frac{2}{u}\leq\frac{2}{c}$对$u$一致有界,而$\frac{x}{a^{2}+x^{2}}$对于每个$u$都是单调的,并且对$u$一致趋于0,所以 由dirichlet可知原积分在$[c,+\infty)$一致收敛.
+
+所以上述积分不一致收敛的原因就在于$u$\textbf{可以趋于0}.
+
+由于$\int_{0}^{+\infty}\frac{x}{a^{2}+x^{2}}\mathrm{d}x$是发散的,所以对于任意的$A$,总存在$A_{1}$,使得
+
+$$\left|\int_{A}^{A_{1}}\frac{x}{a^{2}+x^{2}}\mathrm{d}x\right|\geq \varepsilon_{0}$$
+
+由于u是可以趋于0的,所以对于任意的$A$对应的$A_{1}$,总能找到足够小的$u$,使得$uA_{1}<\pi/4$,
+所以对于任意的$x\in[A,A_{1}]$,都有$ux<\frac{\pi}{4}$,即$\mathrm{cos}\ ux>\frac{\sqrt{2}}{2}$
+
+所以$$\left|\int_{A}^{A_{1}}\frac{x\mathrm{cos}\ ux}{a^{2}+x^{2}}\mathrm{d}x\right|>\frac{\sqrt{2}}{2}\left|\int_{A}^{A_{1}}\frac{x}{a^{2}+x^{2}}\mathrm{d}x\right|\geq\frac{\sqrt{2}}{2}\varepsilon_{0}$$
+
+即不一致收敛.
+
+\textbf{例:} 证明:$$\int_{0}^{+\infty}\sqrt{u}\mathrm{e}^{-ux^{2}}\mathrm{d}x$$在$[0,+\infty)$不一致收敛.
+
+\textbf{提示:}对于任意的$A$,取$A_{1}=2A$,则作换元$t=\sqrt{u}x$,由于u可以趋于0,不妨取$u=1/A$,则$t\in[1,2]$
+原积分化为$\int_{1}^{2}\mathrm{e}^{-t^{2}}\mathrm{d}t$,这个值是一个大于0的常数,所以不是一致收敛.
+
+\subsection*{4.利用对参数求微分计算积分}
+
+假如积分上限是无穷,则必须有一致收敛，才能对参数求导.
+
+(1)计算积分$$\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\mathrm{sin}\ cx\mathrm{d}x,(a,b,c>0)$$
+
+(2)利用已知的积分$\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\mathrm{d}x=\frac{\sqrt{\pi}}{2},\int_{0}^{+\infty}\frac{\mathrm{sin}\ x}{x}\mathrm{d}x=\frac{\pi}{2}$,计算下列积分
+
+$$\int_{0}^{+\infty}\mathrm{e}^{-(2x^{2}+x+2)}\mathrm{d}x$$
+$$\int_{0}^{+\infty}\frac{\mathrm{sin}\ x^{2}}{x}\mathrm{d}x$$
+$$\int_{0}^{+\infty}\frac{\mathrm{sin}^{3}x}{x}\mathrm{d}x$$
+\newpage
+\subsection*{答案}
+1.(1)1
+
+1.(2)$\frac{8}{3}$
+
+1.(3)$\frac{\pi}{16}$
+
+2.(1)$-\mathrm{e}^{(1+\mathrm{cos}\ x)^{2}}\mathrm{sin}\ x-\mathrm{e}^{(1+\mathrm{sin}\ x)^{2}}\mathrm{cos}\ x$
+
+2.(2)$-2x\int_{x}^{x^{2}}\mathrm{e}^{-x^{2}u^{2}}u^{2}\mathrm{d}u+2x\mathrm{e}^{-x^{6}}-\mathrm{e}^{-x^{4}}$
+
+2.(3)$\frac{1}{x}(\mathrm{sin}\ x(b+x)-\mathrm{sin}\ x(a+x))+\frac{\mathrm{sin}(b+x)}{b+x}-\frac{\mathrm{sin}(a+x)}{a+x}$
+
+2.(4)$\int_{0}^{u}(g_{1}'(x+u,x-u)-g_{2}'(x+u,x-u))\mathrm{d}x+g(2u,0)$
+
+2.(5)$\int^{t^{2}}_{0}[-2t\int_{x-t}^{x+t}\mathrm{cos}(x^{2}+y^{2}-t^{2})\mathrm{d}y+\mathrm{sin}(x^{2}+(x+t)^{2}-t^{2})+\mathrm{sin}(x^{2}+(x-t)^{2}-t^{2})]\mathrm{d}x
++2t\int_{t^{2}-t}^{t^{2}+t}\mathrm{sin}\ y^{2}\mathrm{d}y$
+
+3.(1)$\pi \mathrm{ln}\frac{a+b}{2}$
+
+3.(2)$\mathrm{arcsin}\ a$
+
+3.(3)$\pm\frac{\pi}{2}\mathrm{ln}(1+|a|)$,若$a>0$,取正号,若$a<0$,取负号.
+
+3.(4)$2\pi \mathrm{ln}\mathrm{cos}\frac{\mathrm{arcsin}\ a}{2}$,或$\pi\mathrm{ln}\frac{1+\sqrt{1-a^{2}}}{2}$
+
+3.(5)$\mathrm{ln}\ \frac{3}{2}$
+
+3.(6)$\frac{\pi}{2}\mathrm{ln}(1+\sqrt{2})$
+
+3.(7)$\frac{\pi\mathrm{ln}\ 2}{8}$
+
+3.(8)$\frac{1}{2}a$
+
+3.(9)$\mathrm{arctan}(1+b)-\mathrm{arctan}(1+a)$
+
+4.(1)$\mathrm{arctan}\ \frac{b}{c}-\mathrm{arctan}\ \frac{a}{c}$
+
+4.(2)$\frac{\sqrt{2\pi}}{2}\mathrm{e}^{-15/8}$
+
+$\frac{\pi}{4}$
+
+$\frac{\pi}{4}$
+\end{document}

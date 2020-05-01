@@ -1,0 +1,169 @@
+\documentclass{ctexart}
+\usepackage{amsmath,amssymb}
+\DeclareSymbolFont{EulerExtension}{U}{euex}{m}{n}
+\DeclareMathSymbol{\euintop}{\mathop} {EulerExtension}{"52}
+\DeclareMathSymbol{\euointop}{\mathop} {EulerExtension}{"48}
+\let\intop\euintop
+\let\ointop\euointop
+\pagestyle{plain}
+\begin{document}
+
+\subsection*{1.隐函数方程组的求解}
+
+\noindent (1)求下列方程组确定的隐函数的偏导数
+
+\begin{eqnarray}
+\begin{cases}
+x=u+v,\\
+y=u-v,\\
+z=u^{2}v^{2}.
+\end{cases}
+\end{eqnarray}
+
+求$\frac{\partial z}{\partial x}$,$\frac{\partial z}{\partial y}$
+\newline
+\newline
+\newline
+这类题一般的解法是在各个方程的两端对自变量$x,y$求偏导数，得到关于$\frac{\partial z}{\partial x}$,$\frac{\partial z}{\partial y}$的方程组(注意$u,v$是关于$x,y$的函数，所以在对第三个式子两边求偏导数时要用复合函数的求导$\frac{\partial z}{\partial x}=\frac{\partial (u^{2}v^{2})}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial (u^{2}v^{2})}{\partial v}\frac{\partial v}{\partial x}=2uv^{2}\frac{\partial u}{\partial x}+2u^{2}v\frac{\partial u}{\partial x}$)然后根据求偏导后的前两式$1=\frac{\partial u}{\partial x}+\frac{\partial v}{\partial x},0=\frac{\partial u}{\partial x}-\frac{\partial v}{\partial x}$解出$\frac{\partial u}{\partial x}=1/2,\frac{\partial v}{\partial x}=1/2$,带入即可解得$\frac{\partial z}{\partial x}=uv^{2}+u^{2}v$,同理可求$\frac{\partial z}{\partial y}$
+\newline
+\newline
+\newline
+\noindent (2)求下列方程组确定的隐函数的偏导数
+
+\begin{eqnarray}
+\begin{cases}
+x+y=u+v,\\
+x\mathrm{sin}\ v=y\mathrm{sin}\ u.
+\end{cases}
+\end{eqnarray}
+
+求$\frac{\partial x}{\partial u}$,$\frac{\partial x}{\partial v}$
+\newline
+\newline
+这个题没有中间变量,只有自变量$u,v$和因变量$x,y$,大部分的考试题也没有中间变量.$x,y$是$u,v$的函数，所以直接在两式两边求对$u$的偏导数,有$\frac{\partial x}{\partial u}+\frac{\partial y}{\partial u}=1$ 和$\frac{\partial x}{\partial u}\ \mathrm{sin}\ v=\frac{\partial y}{\partial u}\ \mathrm{sin}\ u+y\mathrm{cos}\ u$,解这个二元一次方程组即可得$\frac{\partial x}{\partial u}$,同理对$v$求偏导数可得$\frac{\partial x}{\partial v}$.
+(这种类型的题考试常考,多练练)
+
+\subsection*{2.映射的Jacobi矩阵}
+
+(这个应该不考或者只考最简单的情况,复合函数的Jacobi矩阵就不用练了)
+
+试求$\mathbf{f}(x,y,z)=(x^{z},\mathrm{sin}\ xy,xyz)$的Jacobi矩阵.
+
+\subsection*{3.求切向量,切平面,法向量,法平面}
+
+\noindent (1)求曲面$z=\mathrm{arctan}\ \frac{y}{x}$在$\mathbf{p_{0}}=(1,1,\frac{\pi}{4})$处的法向量和切平面方程.
+
+
+\noindent (2)证明:曲面$\sqrt{x}+\sqrt{y}+\sqrt{z}=\sqrt{a}\ \ (a>0)$的切平面在各坐标轴上截下的诸线段之和为常数.
+
+\noindent (3)求曲线
+\begin{eqnarray}
+\begin{cases}
+x=\mathrm{e}^{t}\\
+y=t\\
+z=t^{2}
+\end{cases}
+\end{eqnarray}
+在$t=0,t=1$这两点处的切线方程.
+
+
+\noindent (4)求柱面和球相交得到的曲线
+\begin{eqnarray}
+\begin{cases}
+x^{2}+y^{2}+z^{2}=9\\
+x^{2}-y^{2}=3
+\end{cases}
+\end{eqnarray}
+在点(2,1,2)的切向量和切线方程.
+\newline
+\newline
+\textbf{这类题的关键是求切向量和法向量.}
+
+对于一个曲面$F(x,y,z)=0$来说,法向量就等于$(\frac{\partial F}{\partial x},\frac{\partial F}{\partial y},\frac{\partial F}{\partial z})$,带入给定的点$(x_{0},y_{0},z_{0})$就得到了法向量.有了法向量,再加上平面过点$(x_{0},y_{0},z_{0})$,很容易写出切平面方程$\frac{\partial F}{\partial x}(x-x_{0})+\frac{\partial F}{\partial y}(y-y_{0})+\frac{\partial F}{\partial z}(z-z_{0})=0$.
+
+对于曲线来说,有两种形式,一是表示成参数方程$x=x(t),y=y(t),z=z(t)$,根据题目给定的点$(x_{0},y_{0},z_{0})$确定对应的$t_{0}$,这一点的切向量就等于$(x'(t_{0}),y'(t_{0})，z'(t_{0}))$,然后再根据过点$(x(t_{0}),y(t_{0})，z(t_{0}))$即得切线$\frac{x-x(t_{0})}{x'(t_{0})}=\frac{y-y(t_{0})}{y'(t_{0})}=\frac{z-z(t_{0})}{z'(t_{0})}$和法平面$x'(t_{0})(x-x(t_{0}))+y'(t_{0})(y-y(t_{0}))+z'(t_{0})(z-z(t_{0}))$
+
+曲线的第二种形式是表示成两个曲面的交线,对于这一类的题,可以先求得两个曲面的法平面在给定的点的法向量,由于两个曲面在交线处相交,所以切线的切向量应该同时与两个曲面在该点的法向量相垂直,利用这一条件可以算出切向量,进而可以算出切线,法平面。
+
+\subsection*{4.极值问题}
+
+\noindent (1)求$f(x,y)=x^{2}-3x^{2}y+y^{3}$的极值
+
+\noindent (2)条件极值在教材55页例5.6
+\newline
+\newline
+条件极值和无条件极值有各自需要的地方
+
+条件极值一般是要求闭集上的最大值和最小值，因为闭集上一定可以取到最值，所以求出各个使偏导数等于0的点后依次带入函数，直接比较这些点的函数值大小就行啦，最大的即为最大值，最小的即为最小值。
+
+条件极值需要注意的问题就是求偏导之后的方程组的求解，以教材55页例5.6为例，求得的方程组是一个齐次方程，必有解x=0,y=0,但是由于D的边界是闭集，一定可以在D上的某点取得最值，也就是说存在D上的某点使得方程组成立，所以齐次方程有非零解，系数矩阵的行列式为0，根据这一点可以迅速解出$\lambda$,进而求出x,y.(这样的题在好几年的考试上都出过,所以...好好看下)
+
+对于无条件极值一般是要求极值点(注意是极值点不是最大值最小值!!!)这时就不能用比较函数值大小的方法来进行判断了,因为极大(小)值的函数值不一定最大(小),所以只能用二阶微分(Hesse矩阵)来判断.当Hesse矩阵
+\begin{equation}\nonumber
+{
+\left( \begin{array}{ccc}
+\frac{\partial^{2}f}{\partial x^{2}}&  \frac{\partial^{2}f}{\partial x\partial y}\\
+  \frac{\partial^{2}f}{\partial x\partial y} &\frac{\partial^{2}f}{\partial y^{2}}
+\end{array}
+\right )}
+\end{equation}
+以下简记为
+\begin{equation}\nonumber
+{
+\left( \begin{array}{ccc}
+a&b\\
+ b&c
+\end{array}
+\right )}
+\end{equation}
+为严格正定时,取得极小值,为严格负定时取得极大值(可以类比一元函数的驻点，二阶导数大于0是极小值点，二阶导数小于0是极小值点)。
+当Hesse矩阵为不定方阵时，不是极值点.
+
+
+根据线性代数,有一些判断矩阵是否为严格正定的方法.(严格正定矩阵的充要条件是各阶顺序主子式的行列式大于0,严格负定矩阵的充要条件是奇数阶顺序主子式的行列式大于0,偶数阶的顺序主子式的行列式小于0)把这些方法对应到二阶的Hesse矩阵上(一阶主子式的行列式是$a$,二阶的是$ac-b^{2}$),就有了
+
+(1)若$a>0,ac-b^{2}>0$,则原矩阵是严格正定矩阵,则有极小值
+
+(2)若$a<0,ac-b^{2}>0$,则原矩阵是严格负定矩阵,则有极大值
+
+(3)若$ac-b^{2}<0$,则原矩阵是不定矩阵,无极值
+
+(4)若$ac-b^{2}=0$,则原矩阵不能判定(这时就相当于一元函数的二阶导数为0,不能判断是否为极值,只能根据三阶导数来判断)
+
+\textbf{假如你感觉到记住上面这些条条框框的太麻烦,担心即使现在记住了考试的时候也会忘，那么你可以通过求Hesse矩阵的特征值来判断.反正是只要严格正定就极小，严格负定就极大,不定就不是极值,求出来特征值之后不就全都解决了嘛,所以只需要求Hesse矩阵的特征值(什么}$b^{2}-ac$\textbf{的都一边去吧,劳资不需要你),假如求出的两个特征值都是正数,那就是严格正定,就是极小值,假如两个特征值都是负数,那么就是严格负定,就是极大值嘛,假如一正一负,就是不定矩阵,没有极值.假如一正一零或一负一零或者两个都是0, 那么就是不能判断(是不是还在担心特征根是复数的情况怎么办?放心好了,实对称矩阵的特征根只能是实数,并且二阶的矩阵对应二次方程,很容易能解出来)}
+
+(这一段选择性的看看就行,考试应该不会考)假如出现了不能判断是否是极值点的情况,就不能依赖Hesse矩阵来判断是否是极值点了.以$f(x,y)=x^{2}-3x^{2}y+y^{3}$在(0,0) 处为例,可以通过找两个趋于(0,0)的点列,其中一个在趋于(0,0)的过程中恒大于f(0,0),另一个恒小于f(0,0),比如取$\mathbf{x_{n}}=(\frac{1}{n},\frac{1}{n})$和$\mathbf{y_{n}}=(\frac{1}{n^{3}},-\frac{1}{\sqrt[3]{n}})$,可以证明(0,0)不是极值点.证明是极值点就要取该点的某个邻域,证明$f(x_{0}+\delta x,y_{0}+\delta y)-f(x_{0},y_{0})$恒为正数或负数即可.
+
+
+\newpage
+\textbf{答案}
+
+1.(1)$\frac{\partial z}{\partial x}=uv^{2}+u^{2}v$
+
+$\frac{\partial z}{\partial y}=uv^{2}-u^{2}v$
+
+
+1.(2)$\frac{\partial x}{\partial u}=\frac{\mathrm{sin}\ u+y\mathrm{cos}\ u}{\mathrm{sin}\ u+\mathrm{sin}\ v}$
+
+$\frac{\partial x}{\partial v}=\frac{\mathrm{sin}\ u-x\mathrm{cos}\ v}{\mathrm{sin}\ u+\mathrm{sin}\ v}$
+
+2.\begin{equation}\nonumber
+{
+\left( \begin{array}{ccc}
+zx^{z-1} & 0 & x^{z}\mathrm{ln}\ z\\
+y\mathrm{cos}\ xy & x\mathrm{cos}\ xy & 0\\
+yz & xz & xy
+\end{array}
+\right )}
+\end{equation}
+
+3.(1)法向量(1,-1,2),切平面$x-y+2z-\frac{\pi}{2}=0$
+
+3.(3)$\frac{x-1}{1}=\frac{y}{1}=\frac{z}{0}$
+
+$\frac{x-e}{e}=\frac{y-1}{1}=\frac{z-1}{2}$
+
+3.(4)切向量(1,2,-2),切线$\frac{x-2}{1}=\frac{y-1}{2}=\frac{z-2}{-2}$
+
+4.(1)各偏导数为0的点有$(0,0),(-1/3,1/3),(1/3,1/3)$这些点都不是极值点
+\end{document}

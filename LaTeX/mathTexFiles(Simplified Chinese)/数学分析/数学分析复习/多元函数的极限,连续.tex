@@ -1,0 +1,120 @@
+\documentclass{ctexart}
+\usepackage{amsmath,amssymb}
+\DeclareSymbolFont{EulerExtension}{U}{euex}{m}{n}
+\DeclareMathSymbol{\euintop}{\mathop} {EulerExtension}{"52}
+\DeclareMathSymbol{\euointop}{\mathop} {EulerExtension}{"48}
+\let\intop\euintop
+\let\ointop\euointop
+\pagestyle{plain}
+\begin{document}
+\subsection*{1.求多元函数的极限}
+\begin{flalign}
+(1)&\lim_{\substack{x\rightarrow 0\\y\rightarrow 0}}(x^{2}+y^{2})^{x^{2}y^{2}}&\\
+(2)&\lim_{\substack{x\rightarrow 0\\y\rightarrow 0}}\frac{\mathrm{ln}(x^{2}+\mathrm{e}^{y^{2}})}{x^{2}+y^{2}}&\\
+(3)&\lim_{\substack{x\rightarrow 0\\y\rightarrow 0}}\frac{1-\mathrm{cos}(x^{2}+y^{2})}{(x^{2}+y^{2})x^{2}y^{2}}&\\
+(4)&\lim_{\substack{x\rightarrow 0\\y\rightarrow 0}}\frac{\sqrt{1+xy}-1}{xy}&\\
+(5)&\lim_{x\rightarrow +\infty}\lim_{y\rightarrow+\infty}\mathrm{sin}\ \frac{\pi x}{2x+y}\ \ \ \lim_{y\rightarrow +\infty}\lim_{x\rightarrow+\infty}\mathrm{sin}\ \frac{\pi x}{2x+y}
+\end{flalign}
+\subsection*{2.讨论下列函数是否在(0,0)处连续}
+\begin{flalign}
+(1)&f(x,y)=\frac{x^{6}y^{8}}{(x^{2}+y^{4})^{5}}&\\
+(2)&f(x,y)=\frac{x^{3}y^{3}}{x^{4}+y^{8}}&\\
+(3)&f(x,y)=\frac{x^{2}y}{x^{2}+y^{2}}&\\
+(4)&f(x,y)=\frac{xy}{x^{2}+y^{2}}&\\
+(5)&f(x,y)=\frac{xy}{x+y}&\\
+(6)&f(x,y)=\frac{xy}{\sqrt{1+x+y}-1}&
+\end{flalign}
+\subsection*{3.说明下列函数在(0,0)处的二重极限和累次极限是否存在}
+\begin{flalign}
+(1)&f(x,y)=(x+y)\mathrm{sin}\ \frac{1}{x}\ \mathrm{sin}\ \frac{1}{y}&\\
+(2)&f(x,y)=\frac{x^{2}y^{2}}{x^{2}y^{2}+(x-y)^{2}}&\\
+(3)&f(x,y)=\frac{x^{2}(1+x^{2})-y^{2}(1+y^{2})}{x^{2}+y^{2}}&
+\end{flalign}
+\subsection*{4.证明下列函数不一致连续}
+\begin{flalign}
+&f(x,y)=\mathrm{sin}\ \frac{1}{x+y}\ \ \ \ \ \ (x,y)\in [0,1]^{2}\setminus(0,0)&
+\end{flalign}
+\subsection*{5.方向导数,偏导数,可微}
+\noindent(1)设函数$f(x,y)=xy.$计算函数$f$在点$(1,1)$处沿方向$\mathbf{u}=(1,1)$的方向导数.
+
+\noindent(2)设函数$f(x,y)=(x-1)^{2}-y^{2}.$计算函数$f$在点$(0,1)$处沿方向$\mathbf{u}=(3/5,-4/5)$的方向导数.
+
+\noindent ps:我觉得初等多元函数偏导数的计算你应该会了(比如:$z=x^{y}$,求$\frac{\partial z}{\partial x}$和$\frac{\partial z}{\partial y}$)，我就不找题了.
+
+\noindent (3)设
+\begin{eqnarray}
+f(x,y)=
+\begin{cases}
+\frac{xy}{x^{2}+y^{2}},&x^{2}+y^{2}>0,\\
+0,&x^{2}+y^{2}=0.
+\end{cases}
+\end{eqnarray}
+验证:$f$在$(0,0)$ 处不连续,因而$f$在$(0,0)$处不可微.并验证$\frac{\partial f}{\partial x}(x,y)$,$\frac{\partial f}{\partial y}(x,y)$在$(0,0)$ 处不连续.
+
+\noindent (4)证明:函数$f(x,y)=\sqrt{|xy|}$在$(0,0)$处不可微.
+
+\noindent (5)验证函数
+\begin{eqnarray}
+f(x,y)=
+\begin{cases}
+\frac{xy}{\sqrt{x^{2}+y^{2}}},&x^{2}+y^{2}>0,\\
+0,&x^{2}+y^{2}=0.
+\end{cases}
+\end{eqnarray}
+在$(0,0)$连续且偏导数存在,但在$(0,0)$处不可微.
+
+\noindent (6)设
+\begin{eqnarray}
+f(x,y)=
+\begin{cases}
+(x^{2}+y^{2})\mathrm{sin}\ \frac{1}{x^{2}+y^{2}},&x^{2}+y^{2}>0,\\
+0,&x^{2}+y^{2}=0.
+\end{cases}
+\end{eqnarray}
+验证:$\frac{\partial f}{\partial x}$,$\frac{\partial f}{\partial y}$在$(0,0)$处不连续,但$f$在$(0,0)$处可微.
+\newpage
+
+\textbf{证明一个函数是否可微是重点}
+
+\textbf{偏导数连续是最强的条件，可以推出可微，不可微也可以推出偏导数不连续，但是可微不能推出偏导数连续，偏导数不连续也不能推出不可微(如(6))。}
+
+\textbf{可微可以同时推出函数连续和各方向导数(偏导数)存在，但是函数连续不能推出可微，各方向导数存在(偏导数存在)也不能推出可微。
+所以偏导数不存在或方向导数不存在可以推出不可微，不连续可以推出不可微}
+
+
+\textbf{各方向导数存在或偏导数存在和函数连续没有必然的联系}，例如: 当$y=x^{2}$且$x\neq 0$时 ,f(x,y)=1,其他情况时,f(x,y)=0.对于这样的f 在(0,0) 处偏导数和各方向导数存在但f 不连续，函数连续也不能推出偏导数或方向导数存在。
+
+\textbf{综上}
+
+\textbf{证明一个函数不可微常用的有三种方法，一是用不连续推出不可微，二是利用偏导数不存在推出不可微，假如f既连续，偏导数又存在就只能在求出偏导数之后利用定义来证明不可微}，即证明
+$$f(x+\Delta x,y+\Delta y)-\frac{\partial f}{\partial x}(x,y)\cdot \Delta x-\frac{\partial f}{\partial y}(x,y)\cdot \Delta y-f(x,y)$$不是$\sqrt{x^{2}+y^{2}}$的高阶无穷小,即$$\lim_{\rho\rightarrow 0}\frac{f(x+\Delta x,y+\Delta y)-\frac{\partial f}{\partial x}(x,y)\cdot \Delta x-\frac{\partial f}{\partial y}(x,y)\cdot \Delta y-f(x,y)}{\sqrt{x^{2}+y^{2}}}$$不为0
+
+\textbf{证明一个函数可微只有用定义(虽然偏导数连续也能推出可微但是我做过的题里都没有这么用的)}
+先计算出偏导数$\frac{\partial f}{\partial x}$和$\frac{\partial f}{\partial y}$再证明$$f(x+\Delta x,y+\Delta y)-\frac{\partial f}{\partial x}(x,y)\cdot \Delta x-\frac{\partial f}{\partial y}(x,y)\cdot \Delta y-f(x,y)$$是$\sqrt{x^{2}+y^{2}}$的高阶无穷小,即$$\lim_{\rho\rightarrow 0}\frac{f(x+\Delta x,y+\Delta y)-\frac{\partial f}{\partial x}(x,y)\cdot \Delta x-\frac{\partial f}{\partial y}(x,y)\cdot \Delta y-f(x,y)}{\sqrt{x^{2}+y^{2}}}=0$$
+
+
+
+
+\textbf{答案}
+
+1.(1) 1
+
+1.(2) 1
+
+1.(3) $+\infty$
+
+1.(4) 1/2
+
+1.(5) 1 \ \ 0
+
+2.除了(3)外，都不连续
+
+3.(1)极限存在，累次极限均不存在
+
+3.(2)极限不存在，累次极限存在
+
+3.(3)极限不存在，累次极限存在
+
+4.考虑点列$(x_{n},y_{n})=(\frac{1}{\pi+4n\pi},\frac{1}{\pi+4n\pi})$,$(x'_{n},y'_{n})=(\frac{1}{4n\pi},\frac{1}{4n\pi})$
+$n\rightarrow +\infty$时,虽然两点的距离趋于0，但$f(x_{n},y_{n})-f(x'_{n},y'_{n})=1$
+\end{document}
