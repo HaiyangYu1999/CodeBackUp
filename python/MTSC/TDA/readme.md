@@ -6,7 +6,7 @@
 
 #### You may run these Python and R files in order as below:
 
-+ **`dataSplit.py` **
++ **`dataSplit.py`**
 
   From `RawData.txt` to `TrainRawData.csv` and `TestRawData.csv`
 
